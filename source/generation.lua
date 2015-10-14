@@ -18,8 +18,10 @@ function generationInit()
 	-- make noise to seed the generation
 	generationAll(function(localgrid,x,y)
 		if love.math.noise(x/(gridsize/10),y/(gridsize/10),seed) > 0.5 then
+			localgrid[x][y] = copyBlock(x,y,grid)
 	        localgrid[x][y].kind = 1 -- Fill the values here
 	    else
+	    	localgrid[x][y] = copyBlock(x,y,grid)
 	    	localgrid[x][y].kind = 0
 	    end
     end)
@@ -28,6 +30,7 @@ function generationInit()
     generationAll(function(localgrid,x,y)
     	local border = 10
 		if x <= border or x > gridsize - border or y <= border or y > gridsize - border then
+			localgrid[x][y] = copyBlock(x,y,grid)
 	        localgrid[x][y].kind = 1 -- Fill the values here
 	    end
     end)
@@ -39,8 +42,10 @@ function generationInit()
 
 
 			if neighbors <= 4 then
+				localgrid[x][y] = copyBlock(x,y,grid)
 				localgrid[x][y].kind = 0
 			elseif neighbors > 6 then
+				localgrid[x][y] = copyBlock(x,y,grid)
 				localgrid[x][y].kind = 1
 			else
 				-- localgrid[x][y] = 1
@@ -55,6 +60,7 @@ function generationInit()
 			local airNeighbors = helperNeighbors(x,y,0)
 			if airNeighbors >= 2 then
 				if math.random() < 0.01 then
+					localgrid[x][y] = copyBlock(x,y,grid)
 					localgrid[x][y].kind = 2
 					localgrid[x][y].waterDensity = 255
 				end
@@ -68,6 +74,7 @@ function generationInit()
 			local airNeighbors = helperNeighbors(x,y,0)
 			if airNeighbors >= 2 then
 				if math.random() < 0.01 then
+					localgrid[x][y] = copyBlock(x,y,grid)
 					localgrid[x][y].kind = 4
 					localgrid[x][y].light = 255
 					helperLights(localgrid,x,y)
@@ -82,8 +89,11 @@ function generationInit()
 			if y > 4 then
 				if grid[x][y-1].kind == 0 and grid[x][y-2].kind == 0 and grid[x][y-3].kind == 0 then
 					if math.random() < 0.02 then
+						localgrid[x][y-1] = copyBlock(x,y,grid)
 						localgrid[x][y-1].kind = 5
+						localgrid[x][y-2] = copyBlock(x,y,grid)
 						localgrid[x][y-2].kind = 5
+						localgrid[x][y-3] = copyBlock(x,y,grid)
 						localgrid[x][y-3].kind = 5
 					end
 				end
@@ -95,6 +105,7 @@ function generationInit()
 	generationAll(function(localgrid,x,y)
 		if grid[x][y].kind == 1 then
 			if love.math.noise(x/(gridsize/10),y/(gridsize/10),seed+30) < 0.2 then
+				localgrid[x][y] = copyBlock(x,y,grid)
 		        localgrid[x][y].kind = 6
 		    end
 		end
@@ -122,7 +133,17 @@ function helperLights(localgrid,basex,basey)
 			local light = 255 - math.sqrt((basex - x)*(basex - x) + (basey - y)*(basey - y))*10
 			if x > 1 and x < gridsize then
 				if y > 1 and y < gridsize then
-					if light > localgrid[x][y].light then
+					local changelight = true
+					if localgrid[x][y] ~= 0 then
+						if light <= localgrid[x][y].light then
+							changelight = false
+						end
+					end
+					if light < 100 then
+						changelight = false
+					end
+					if changelight then
+						localgrid[x][y] = copyBlock(x,y,grid)
 						localgrid[x][y].light = light
 					end
 				end
@@ -136,10 +157,7 @@ function generationAll(func)
 	for x = 1, gridsize do
 	    localgrid[x] = {}
 	    for y = 1, gridsize do
-	    	localgrid[x][y] = {}
-	    	localgrid[x][y].kind = grid[x][y].kind
-	    	localgrid[x][y].waterDensity = grid[x][y].waterDensity
-	    	localgrid[x][y].light = grid[x][y].light
+	    	localgrid[x][y] = 0
 	    end
 	end
 	for y = 1, gridsize do
@@ -147,7 +165,13 @@ function generationAll(func)
 			func(localgrid,x,y)
 		end
 	end
-	grid = localgrid
+	for x = 1, gridsize do
+	    for y = 1, gridsize do
+	    	if localgrid[x][y] ~= 0 then
+	    		grid[x][y] = copyBlock(x,y,localgrid)
+	    	end
+	    end
+	end
 end
 
 

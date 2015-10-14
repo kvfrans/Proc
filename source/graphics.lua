@@ -31,7 +31,7 @@ function graphicsDraw()
 	end
 
 
-
+	love.graphics.setColor(255,255,255)
 	love.graphics.draw(shadowcanvas)
 
 	for i, bot in ipairs(npc) do
