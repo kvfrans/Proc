@@ -17,7 +17,7 @@ function generationInit()
 
 	-- make noise to seed the generation
 	generationAll(function(localgrid,x,y)
-		if love.math.noise(x/(gridsize/10),y/(gridsize/10),seed) > 0.5 then
+		if love.math.noise(x/(gridsize/20),y/(gridsize/20),seed) > 0.5 then
 			localgrid[x][y] = copyBlock(x,y,grid)
 	        localgrid[x][y].kind = 1 -- Fill the values here
 	    else
@@ -26,12 +26,16 @@ function generationInit()
 	    end
     end)
 
+
+
 	-- make edges
     generationAll(function(localgrid,x,y)
     	local border = 10
 		if x <= border or x > gridsize - border or y <= border or y > gridsize - border then
-			localgrid[x][y] = copyBlock(x,y,grid)
-	        localgrid[x][y].kind = 1 -- Fill the values here
+			if y > 100 then
+				localgrid[x][y] = copyBlock(x,y,grid)
+		        localgrid[x][y].kind = 1 -- Fill the values here
+		    end
 	    end
     end)
 
@@ -56,7 +60,7 @@ function generationInit()
 
 	-- makes water sources
 	generationAll(function(localgrid,x,y)
-		if grid[x][y].kind == 1 then
+		if grid[x][y].kind == 1 and y > 100 then
 			local airNeighbors = helperNeighbors(x,y,0)
 			if airNeighbors >= 2 then
 				if math.random() < 0.01 then
@@ -70,7 +74,7 @@ function generationInit()
 
 	-- create light sources
 	generationAll(function(localgrid,x,y)
-		if grid[x][y].kind == 1 then
+		if grid[x][y].kind == 1 and y > 100 then
 			local airNeighbors = helperNeighbors(x,y,0)
 			if airNeighbors >= 2 then
 				if math.random() < 0.01 then
@@ -101,13 +105,29 @@ function generationInit()
 		end
 	end)
 
-	-- create mineral
+	-- create ores
 	generationAll(function(localgrid,x,y)
 		if grid[x][y].kind == 1 then
-			if love.math.noise(x/(gridsize/10),y/(gridsize/10),seed+30) < 0.2 then
+			if love.math.noise(x/(gridsize/20),y/(gridsize/20),seed+30) < 0.2 then
 				localgrid[x][y] = copyBlock(x,y,grid)
-		        localgrid[x][y].kind = 6
+		        localgrid[x][y].kind = 20
 		    end
+		end
+    end)
+
+    -- make crust
+    generationAll(function(localgrid,x,y)
+
+		if y < 100 then
+			localgrid[x][y] = copyBlock(x,y,grid)
+			localgrid[x][y].kind = 0
+		elseif y < 125 then
+			localgrid[x][y] = copyBlock(x,y,grid)
+			localgrid[x][y].kind = 1
+		end
+		if y < 105 and y >= 100 then
+    		localgrid[x][y] = copyBlock(x,y,grid)
+			localgrid[x][y].kind = 6
 		end
     end)
 

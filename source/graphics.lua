@@ -52,8 +52,13 @@ function graphicsInit()
 		    for x = 1, gridsize do
 		        local current = grid[x][y]
 		        if current.kind == 0 then
-		        	love.graphics.setColor(117,74,25)
-		        	love.graphics.rectangle("fill",x*scale,y*scale,scale,scale)
+		        	if y > 100 then
+			        	love.graphics.setColor(117,74,25)
+			        	love.graphics.rectangle("fill",x*scale,y*scale,scale,scale)
+			        else
+			        	love.graphics.setColor(150,150,255)
+			        	love.graphics.rectangle("fill",x*scale,y*scale,scale,scale)
+			        end
 		        end
 		        if current.kind == 1 then
 		        	love.graphics.setColor(255,0,0)
@@ -68,6 +73,10 @@ function graphicsInit()
 		        	love.graphics.rectangle("fill",x*scale,y*scale,scale,scale)
 		        end
 		        if current.kind == 6 then
+		        	love.graphics.setColor(255,0,0)
+		        	love.graphics.rectangle("fill",x*scale,y*scale,scale,scale)
+		        end
+		        if current.kind == 20 then
 		        	love.graphics.setColor(100,20,100)
 		        	love.graphics.rectangle("fill",x*scale,y*scale,scale,scale)
 		        end

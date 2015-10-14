@@ -4,8 +4,10 @@
 -- 3 - flowingwater
 -- 4 - lightdirt
 -- 5 - plant
--- 6 - mineral
+-- 6 - snow
 -- 7 - base
+
+-- 20 - some ore
 function automationTick()
 	-- generationAll(function(localgrid,x,y)
 
@@ -55,9 +57,9 @@ function automationTick()
 	    end
 	end
 
-	for i, bot in ipairs(npc) do
-		aiTick(bot)
-	end
+	-- for i, bot in ipairs(npc) do
+	-- 	aiTick(bot)
+	-- end
 end
 
 function copyBlock(x,y,origin)

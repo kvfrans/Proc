@@ -3,9 +3,9 @@ collisionGrid = {}
 cronjobs = {}
 npc = {}
 
-scale = 2
+scale = 1
 
-gridsize = 300
+gridsize = 600
 
 math.randomseed(os.time())
 seed = math.random()
