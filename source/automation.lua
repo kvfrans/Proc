@@ -7,7 +7,21 @@
 -- 6 - snow
 -- 7 - base
 
+-- 10 - hardblock
+
 -- 20 - some ore
+
+
+
+
+
+
+
+-- BIOMES
+
+
+
+
 function automationTick()
 	-- generationAll(function(localgrid,x,y)
 
@@ -46,6 +60,7 @@ function automationTick()
 					end
 				end
 			end
+
 		end
 	end
 
@@ -67,6 +82,7 @@ function copyBlock(x,y,origin)
 	copy.kind = origin[x][y].kind
 	copy.waterDensity = origin[x][y].waterDensity
 	copy.light = origin[x][y].light
+	copy.biome = origin[x][y].biome
 	return copy
 end
 

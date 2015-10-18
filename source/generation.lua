@@ -5,6 +5,7 @@ function generationInit()
 	    	grid[x][y] = {}
 	    	grid[x][y].kind = 0
 	    	grid[x][y].light = 100
+	    	grid[x][y].biome = 0
 	    end
 	end
 
@@ -25,6 +26,8 @@ function generationInit()
 	    	localgrid[x][y].kind = 0
 	    end
     end)
+
+
 
 
 
@@ -58,12 +61,83 @@ function generationInit()
 
 	end
 
+	-- make crust
+    generationAll(function(localgrid,x,y)
+		if y < 100 then
+			localgrid[x][y] = copyBlock(x,y,grid)
+			localgrid[x][y].kind = 0
+		elseif y < 125 then
+			localgrid[x][y] = copyBlock(x,y,grid)
+			localgrid[x][y].kind = 1
+		end
+		if y < 105 and y >= 100 then
+    		localgrid[x][y] = copyBlock(x,y,grid)
+			localgrid[x][y].kind = 6
+		end
+    end)
+
+	-- make biomes
+	local i = 1
+	while i < 20 do
+		local x = math.floor(math.random()*(gridsize - 2) + 1)
+		local y = math.floor(math.random()*(gridsize - 2 - 100) + 1 + 100)
+		if grid[x][y].kind == 0 then
+			grid[x][y].biome = (i % 5) + 1
+			i = i + 1
+		end
+	end
+
+	for i = 0,200 do
+		for x = 1, gridsize do
+		    for y = 1, gridsize do
+				local b = grid[x][y].biome
+				if not blockAt(x,y) then
+					if b ~= 0 then
+						if helperNeighborsBiome(x,y,0) >= 1 and helperNeighbors(x,y,0) >= 1 then
+							if y < gridsize-1 then
+								if grid[x][y+1].biome == 0 then
+									grid[x][y+1] = copyBlock(x,y+1,grid)
+									grid[x][y+1].biome = b
+								end
+							end
+							if y > 2 then
+								if grid[x][y-1].biome == 0 then
+									grid[x][y-1] = copyBlock(x,y-1,grid)
+									grid[x][y-1].biome = b
+								end
+							end
+							if x < gridsize - 1 then
+								if grid[x+1][y].biome == 0 then
+									grid[x+1][y] = copyBlock(x+1,y,grid)
+									grid[x+1][y].biome = b
+								end
+							end
+							if x > 2 then
+								if grid[x-1][y].biome == 0 then
+									grid[x-1][y] = copyBlock(x-1,y,grid)
+									grid[x-1][y].biome = b
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+
 	-- makes water sources
 	generationAll(function(localgrid,x,y)
 		if grid[x][y].kind == 1 and y > 100 then
 			local airNeighbors = helperNeighbors(x,y,0)
 			if airNeighbors >= 2 then
+				local maketree = false
 				if math.random() < 0.01 then
+					maketree = true
+				end
+				if grid[x][y].biome == 5 and math.random() < 0.05 then
+					maketree = true
+				end
+				if maketree then
 					localgrid[x][y] = copyBlock(x,y,grid)
 					localgrid[x][y].kind = 2
 					localgrid[x][y].waterDensity = 255
@@ -92,7 +166,14 @@ function generationInit()
 		if grid[x][y].kind == 1 then
 			if y > 4 then
 				if grid[x][y-1].kind == 0 and grid[x][y-2].kind == 0 and grid[x][y-3].kind == 0 then
+					local maketree = false
 					if math.random() < 0.02 then
+						maketree = true
+					end
+					if grid[x][y].biome == 4 and math.random() < 0.1 then
+						maketree = true
+					end
+					if maketree then
 						localgrid[x][y-1] = copyBlock(x,y,grid)
 						localgrid[x][y-1].kind = 5
 						localgrid[x][y-2] = copyBlock(x,y,grid)
@@ -100,6 +181,7 @@ function generationInit()
 						localgrid[x][y-3] = copyBlock(x,y,grid)
 						localgrid[x][y-3].kind = 5
 					end
+
 				end
 			end
 		end
@@ -115,22 +197,25 @@ function generationInit()
 		end
     end)
 
-    -- make crust
-    generationAll(function(localgrid,x,y)
 
-		if y < 100 then
-			localgrid[x][y] = copyBlock(x,y,grid)
-			localgrid[x][y].kind = 0
-		elseif y < 125 then
-			localgrid[x][y] = copyBlock(x,y,grid)
-			localgrid[x][y].kind = 1
-		end
-		if y < 105 and y >= 100 then
-    		localgrid[x][y] = copyBlock(x,y,grid)
-			localgrid[x][y].kind = 6
-		end
-    end)
 
+	-- WE NEED TO BUILD A WALL
+    for x = 290, 310 do
+	    for y = 50, 400 do
+	    	if y < 300 then
+		    	grid[x][y].kind = 10
+	    	elseif grid[x][y-1].kind == 10 then
+	    		if math.random() < 0.9 then
+	    			grid[x][y].kind = 10
+	    		end
+	    	end
+	    end
+	end
+
+
+
+
+    -- make bot
     for i = 2,gridsize do
     	if grid[100][i].kind == 1 and grid[100][i-1].kind == 0 then
     		grid[100][i-1].kind = 7
@@ -250,6 +335,70 @@ function helperNeighbors(x,y,tile,edge)
 	end
 	if y < gridsize then
 		if grid[x][y+1].kind == tile then
+			neighbors = neighbors + 1
+		end
+	elseif edge then
+		neighbors = neighbors + 1
+	end
+
+	return neighbors
+end
+
+function helperNeighborsBiome(x,y,tile,edge)
+	local neighbors = 0
+	if x > 1 then
+		if grid[x-1][y].biome == tile then
+			neighbors = neighbors + 1
+		end
+		if y > 1 then
+			if grid[x-1][y-1].biome == tile then
+				neighbors = neighbors + 1
+			end
+		elseif edge then
+			neighbors = neighbors + 1
+		end
+		if y < gridsize then
+			if grid[x-1][y+1].biome == tile then
+				neighbors = neighbors + 1
+			end
+		elseif edge then
+			neighbors = neighbors + 1
+		end
+	elseif edge then
+		neighbors = neighbors + 1
+	end
+
+	if x < gridsize then
+		if grid[x+1][y].biome == tile then
+			neighbors = neighbors + 1
+		end
+		if y > 1 then
+			if grid[x+1][y-1].biome == tile then
+				neighbors = neighbors + 1
+			end
+		elseif edge then
+			neighbors = neighbors + 1
+		end
+		if y < gridsize then
+			if grid[x+1][y+1].biome == tile then
+				neighbors = neighbors + 1
+			end
+		elseif edge then
+			neighbors = neighbors + 1
+		end
+	elseif edge then
+		neighbors = neighbors + 1
+	end
+
+	if y > 1 then
+		if grid[x][y-1].biome == tile then
+			neighbors = neighbors + 1
+		end
+	elseif edge then
+		neighbors = neighbors + 1
+	end
+	if y < gridsize then
+		if grid[x][y+1].biome == tile then
 			neighbors = neighbors + 1
 		end
 	elseif edge then
