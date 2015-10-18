@@ -6,6 +6,10 @@ generation = require "source.generation"
 automation = require "source.automation"
 collisionSource = require "source.collision"
 aiSource = require "source.ai"
+cameraSource = require "source.camera"
+player = require "source.player"
+KeyMap = require "modules.keymap"
+keySource = require "source.keymaphandle"
 
 
 function love.load()
@@ -14,6 +18,7 @@ function love.load()
 	collisionBlockUpdate()
 	automationStart()
 	graphicsInit()
+	keyInit()
 	love.keyboard.setKeyRepeat(true)
 end
 
@@ -22,8 +27,11 @@ function love.update(dt)
 		cronjobs[i]:update(dt)
 	end
 	automationTick()
+	cameraUpdate(dt)
+	playerMove(dt)
+	keyUpdate(dt)
 end
 
 function love.draw()
-	graphicsDraw()
+	graphicsDrawPOV()
 end

@@ -56,7 +56,7 @@ function aiInit()
 end
 
 function blockAt(x,y)
-	if grid[x][y].kind == 0 or grid[x][y].kind == 3 or grid[x][y].kind == 3 then
+	if grid[x][y].kind == 0 or grid[x][y].kind == 3 or grid[x][y].kind == 2 then
 		return false
 	else
 		return true

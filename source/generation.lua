@@ -219,10 +219,11 @@ function generationInit()
     for i = 2,gridsize do
     	if grid[100][i].kind == 1 and grid[100][i-1].kind == 0 then
     		grid[100][i-1].kind = 7
-    		local bot = aiInit()
-    		bot.x = 100
-    		bot.y = i-1
-    		table.insert(npc,bot)
+    		-- local bot = aiInit()
+    		-- bot.x = 100
+    		-- bot.y = i-1
+    		-- table.insert(npc,bot)
+    		playerInit(100,i - 2)
     		break
     	end
     end
