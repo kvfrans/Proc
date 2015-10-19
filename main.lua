@@ -10,6 +10,7 @@ cameraSource = require "source.camera"
 player = require "source.player"
 KeyMap = require "modules.keymap"
 keySource = require "source.keymaphandle"
+building = require "source.building"
 
 
 function love.load()
@@ -26,10 +27,11 @@ function love.update(dt)
 	for i = 1, #cronjobs do
 		cronjobs[i]:update(dt)
 	end
-	automationTick()
+	-- automationTick()
 	cameraUpdate(dt)
 	playerMove(dt)
 	keyUpdate(dt)
+	buildingUpdate(dt)
 end
 
 function love.draw()

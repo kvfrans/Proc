@@ -213,7 +213,9 @@ function generationInit()
 	end
 
 
-
+	for i = 0,200 do
+		automationTick()
+	end
 
     -- make bot
     for i = 2,gridsize do

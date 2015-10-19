@@ -14,6 +14,6 @@ function cameraUpdate(dt)
 	-- 	camera.x = camera.x + cameraspeed
 	-- end
 
-	camera.x = camera.x - (camera.x - ((player.x*scale) - winW / 2)) * dt * 5
-	camera.y = camera.y - (camera.y - ((player.y*scale) - winH / 2)) * dt * 5
+	camera.x = camera.x - (camera.x - ((player.x*scale) - winW / 2)) * dt * 2
+	camera.y = camera.y - (camera.y - ((player.y*scale) - winH / 2)) * dt * 2
 end

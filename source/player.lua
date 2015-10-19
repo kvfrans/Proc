@@ -2,11 +2,11 @@ function playerInit(xa,ya)
 	player = {
 		x = xa,
 		y = ya,
-		speed = 5,
+		speed = 8,
 		sidebound = 0.2,
-		gravity = 20,
+		gravity = 30,
 		yVel = 0,
-		jump = 10,
+		jump = 15,
 	}
 end
 
@@ -20,14 +20,14 @@ function playerMove(dt)
 
 
 	if keyPressed("up") then
-		if not playerCollidingUp() then
+		if not playerCollidingUp(true) then
 			player.yVel = player.jump
 		end
 	end
 	if keyDown("down") then
-		if not playerCollidingDown() then
-			player.y = player.y + player.speed*dt
-		end
+		-- if not playerCollidingDown() then
+		-- 	player.y = player.y + player.speed*dt
+		-- end
 	end
 	if keyDown("left") then
 		local fallLeft = player.speed*dt
@@ -64,13 +64,13 @@ function playerMove(dt)
 		end
 	end
 
-	if playerCollidingLeft() then
-		player.x = player.x + 0.01
-	end
+	-- if playerCollidingLeft() then
+	-- 	player.x = player.x + 0.01
+	-- end
 
-	if playerCollidingRight() then
-		player.x = player.x - 0.01
-	end
+	-- if playerCollidingRight() then
+	-- 	player.x = player.x - 0.01
+	-- end
 
 	-- if player.yVel < -10 then
 	-- 	player.yVel = -10
@@ -78,10 +78,9 @@ function playerMove(dt)
 
 	if player.yVel < 0 then
 		local fallLeft = player.yVel*dt
-		local go = false
+		local go = true
 		while fallLeft < -0.1 do
 			if not playerCollidingDown() then
-				go = true
 				player.y = player.y + 0.1
 				fallLeft = fallLeft + 0.1
 			else
@@ -92,16 +91,18 @@ function playerMove(dt)
 		if go then
 			player.y = player.y - fallLeft
 		end
+		-- if not playerCollidingDown() then
+		-- 	player.y = player.y - player.yVel*dt
+		-- end
 	end
 
 
 
 	if player.yVel > 0 then
 		local fallLeft = player.yVel*dt
-		local go = false
+		local go = true
 		while fallLeft > 0.1 do
 			if not playerCollidingUp() then
-				go = true
 				player.y = player.y - 0.1
 				fallLeft = fallLeft - 0.1
 			else
@@ -116,14 +117,20 @@ function playerMove(dt)
 	end
 end
 
-function playerCollidingDown()
+function playerCollidingDown(small)
 	local px = math.floor(player.x)
 	local py = math.floor(player.y)
 	for y = py - 2, py + 2 do
 	    for x = px - 2, px + 2 do
 	    	if blockAt(x,y) then
-	    		if CheckCollision(player.x,player.y + (1 - player.sidebound),1,player.sidebound,x,y,1,1) then
-	    			return true
+	    		if small then
+		    		if CheckCollision(player.x + player.sidebound,player.y + (1 - player.sidebound),player.sidebound,player.sidebound,x,y,1,1) then
+		    			return true
+		    		end
+		    	else
+		    		if CheckCollision(player.x,player.y + (1 - player.sidebound),1,player.sidebound,x,y,1,1) then
+		    			return true
+		    		end
 	    		end
 	    	end
 	    end
@@ -137,7 +144,7 @@ function playerCollidingLeft()
 	for y = py - 2, py + 2 do
 	    for x = px - 2, px + 2 do
 	    	if blockAt(x,y) then
-	    		if CheckCollision(player.x,player.y + player.sidebound,player.sidebound,player.sidebound,x,y,1,1) then
+	    		if CheckCollision(player.x - 0.2,player.y + player.sidebound,player.sidebound,player.sidebound,x,y,1,1) then
 	    			return true
 	    		end
 	    	end
@@ -152,7 +159,7 @@ function playerCollidingRight()
 	for y = py - 2, py + 2 do
 	    for x = px - 2, px + 2 do
 	    	if blockAt(x,y) then
-	    		if CheckCollision(player.x + (1 - player.sidebound),player.y + player.sidebound,player.sidebound,player.sidebound,x,y,1,1) then
+	    		if CheckCollision(player.x + (1 - player.sidebound) + 0.2,player.y + player.sidebound,player.sidebound,player.sidebound,x,y,1,1) then
 	    			return true
 	    		end
 	    	end
@@ -161,15 +168,21 @@ function playerCollidingRight()
 	return false
 end
 
-function playerCollidingUp()
+function playerCollidingUp(small)
 	local px = math.floor(player.x)
 	local py = math.floor(player.y)
 	for y = py - 2, py + 2 do
 	    for x = px - 2, px + 2 do
 	    	if blockAt(x,y) then
-	    		if CheckCollision(player.x,player.y,1,player.sidebound,x,y,1,1) then
-	    			return true
-	    		end
+	    		if small then
+		    		if CheckCollision(player.x + player.sidebound,player.y,player.sidebound,player.sidebound,x,y,1,1) then
+		    			return true
+		    		end
+		    	else
+		    		if CheckCollision(player.x,player.y,1,player.sidebound,x,y,1,1) then
+		    			return true
+		    		end
+		    	end
 	    	end
 	    end
 	end
