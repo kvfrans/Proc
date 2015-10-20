@@ -6,6 +6,7 @@ function generationInit()
 	    	grid[x][y].kind = 0
 	    	grid[x][y].light = 100
 	    	grid[x][y].biome = 0
+	    	grid[x][y].changed = false
 	    end
 	end
 
@@ -190,9 +191,20 @@ function generationInit()
 	-- create ores
 	generationAll(function(localgrid,x,y)
 		if grid[x][y].kind == 1 then
-			if love.math.noise(x/(gridsize/20),y/(gridsize/20),seed+30) < 0.2 then
+			-- ore 1
+			if love.math.noise(x/(gridsize/20),y/(gridsize/20),seed+30) < 0.1 then
 				localgrid[x][y] = copyBlock(x,y,grid)
 		        localgrid[x][y].kind = 20
+		    end
+		    -- ore 2
+		    if love.math.noise(x/(gridsize/20),y/(gridsize/20),seed+33) < 0.1 then
+				localgrid[x][y] = copyBlock(x,y,grid)
+		        localgrid[x][y].kind = 21
+		    end
+		    -- ore 3
+		    if love.math.noise(x/(gridsize/20),y/(gridsize/20),seed+36) < 0.1 then
+				localgrid[x][y] = copyBlock(x,y,grid)
+		        localgrid[x][y].kind = 22
 		    end
 		end
     end)

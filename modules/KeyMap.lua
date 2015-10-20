@@ -161,6 +161,7 @@ function love.keypressed( key , isrepeat )
       print("key")
       _keyLast = { "key" , key }
    end
+   loveframes.keypressed(key)
 end
 
 function love.keyreleased( key )
@@ -169,6 +170,7 @@ function love.keyreleased( key )
          k.held = false
          k.pushed = false
    end
+   loveframes.keyreleased(key)
 end
 
 

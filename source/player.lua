@@ -15,9 +15,10 @@ function playerMove(dt)
 	if not playerCollidingDown() then
 		player.yVel = player.yVel - player.gravity*dt
 	else
-		player.yVel = 0
+		if player.yVel < 0 then
+			player.yVel = 0
+		end
 	end
-
 
 	if keyPressed("up") then
 		if not playerCollidingUp(true) then

@@ -2,6 +2,10 @@ grid = {}
 collisionGrid = {}
 cronjobs = {}
 npc = {}
+valuetrain = {
+	mousex = 0,
+	mousey = 0
+}
 
 player = {
 	x = 0,

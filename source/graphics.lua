@@ -188,6 +188,14 @@ function graphicsDrawPOV()
 		        	love.graphics.setColor(100,20,100)
 		        	drawBlock(x,y)
 		        end
+		        if current.kind == 21 then
+		        	love.graphics.setColor(100,100,20)
+		        	drawBlock(x,y)
+		        end
+		        if current.kind == 22 then
+		        	love.graphics.setColor(20,100,100)
+		        	drawBlock(x,y)
+		        end
 		        if current.kind == 10 then
 		        	love.graphics.setColor(200,100,100)
 		        	drawBlock(x,y)
@@ -257,7 +265,9 @@ function graphicsDrawPOV()
     love.graphics.rectangle("fill",player.x*scale - camera.x,player.y*scale - camera.y,scale/2,scale/2)
 
 	love.graphics.setColor(255,255,255)
-	love.graphics.print("" .. framespast,100,300)
+	love.graphics.print("" .. valuetrain.mousex .. " " ..valuetrain.mousey,100,300)
+
+	loveframes.draw()
 end
 
 

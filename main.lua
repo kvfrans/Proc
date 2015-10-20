@@ -11,6 +11,7 @@ player = require "source.player"
 KeyMap = require "modules.keymap"
 keySource = require "source.keymaphandle"
 building = require "source.building"
+loveframes = require "frames"
 
 
 function love.load()
@@ -20,7 +21,15 @@ function love.load()
 	automationStart()
 	graphicsInit()
 	keyInit()
+	loveframes.update(dt)
 	love.keyboard.setKeyRepeat(true)
+
+	loveframes.SetState("mainmenu")
+
+	local frame = loveframes.Create("frame")
+	frame:SetName("Mainmenu Frame")
+	frame:Center()
+	frame:SetState("mainmenu")
 end
 
 function love.update(dt)
@@ -32,8 +41,30 @@ function love.update(dt)
 	playerMove(dt)
 	keyUpdate(dt)
 	buildingUpdate(dt)
+	loveframes.update(dt)
 end
 
 function love.draw()
 	graphicsDrawPOV()
 end
+
+function love.mousepressed(x, y, button)
+    loveframes.mousepressed(x, y, button)
+    print("asd")
+end
+
+function love.mousereleased(x, y, button)
+    loveframes.mousereleased(x, y, button)
+end
+
+function love.textinput(text)
+	loveframes.textinput(text)
+end
+
+-- function love.keypressed(key, unicode)
+--     loveframes.keypressed(key, unicode)
+-- end
+
+-- function love.keyreleased(key)
+--     loveframes.keyreleased(key)
+-- end
