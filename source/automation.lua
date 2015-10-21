@@ -71,6 +71,9 @@ function copyBlock(x,y,origin)
 	copy.light = origin[x][y].light
 	copy.biome = origin[x][y].biome
 	copy.changed = origin[x][y].changed
+	copy.red = origin[x][y].red
+	copy.blue = origin[x][y].blue
+	copy.green = origin[x][y].green
 	return copy
 end
 
@@ -79,4 +82,13 @@ function automationStart()
 		automationTick()
 	end)
 	table.insert(cronjobs,tick)
+end
+
+function interact(x,y)
+	local current = grid[x][y]
+	if current.kind == 7 then
+		local parentframe = loveframes.Create("frame")
+		local button1 = loveframes.Create("button", parentframe)
+		button1:SetPos(5, 35)
+	end
 end

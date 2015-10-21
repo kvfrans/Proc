@@ -23,13 +23,6 @@ function love.load()
 	keyInit()
 	loveframes.update(dt)
 	love.keyboard.setKeyRepeat(true)
-
-	loveframes.SetState("mainmenu")
-
-	local frame = loveframes.Create("frame")
-	frame:SetName("Mainmenu Frame")
-	frame:Center()
-	frame:SetState("mainmenu")
 end
 
 function love.update(dt)

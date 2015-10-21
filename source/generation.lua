@@ -7,6 +7,9 @@ function generationInit()
 	    	grid[x][y].light = 100
 	    	grid[x][y].biome = 0
 	    	grid[x][y].changed = false
+	    	grid[x][y].red = 100
+	    	grid[x][y].blue = 100
+	    	grid[x][y].green = 100
 	    end
 	end
 
@@ -79,15 +82,20 @@ function generationInit()
 
 	-- make biomes
 	local i = 1
-	while i < 20 do
+	while i < 40 do
 		local x = math.floor(math.random()*(gridsize - 2) + 1)
 		local y = math.floor(math.random()*(gridsize - 2 - 100) + 1 + 100)
 		if grid[x][y].kind == 0 then
 			grid[x][y].biome = (i % 5) + 1
+			grid[x][y].r = math.random()*255
+			grid[x][y].g = math.random()*255
+			grid[x][y].b = math.random()*255
 			i = i + 1
 		end
 	end
 
+
+	-- make biomes
 	for i = 0,200 do
 		for x = 1, gridsize do
 		    for y = 1, gridsize do
@@ -99,24 +107,28 @@ function generationInit()
 								if grid[x][y+1].biome == 0 then
 									grid[x][y+1] = copyBlock(x,y+1,grid)
 									grid[x][y+1].biome = b
+									editColor(x,y+1,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
 								end
 							end
 							if y > 2 then
 								if grid[x][y-1].biome == 0 then
 									grid[x][y-1] = copyBlock(x,y-1,grid)
 									grid[x][y-1].biome = b
+									editColor(x,y-1,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
 								end
 							end
 							if x < gridsize - 1 then
 								if grid[x+1][y].biome == 0 then
 									grid[x+1][y] = copyBlock(x+1,y,grid)
 									grid[x+1][y].biome = b
+									editColor(x+1,y,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
 								end
 							end
 							if x > 2 then
 								if grid[x-1][y].biome == 0 then
 									grid[x-1][y] = copyBlock(x-1,y,grid)
 									grid[x-1][y].biome = b
+									editColor(x-1,y,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
 								end
 							end
 						end
@@ -241,8 +253,40 @@ function generationInit()
     		break
     	end
     end
+end
 
-
+function editColor(x,y,red,blue,green)
+	local mathr = math.random()
+	local dist = 20
+	local newred = red
+	local newblue = blue
+	local newgreen = green
+	if mathr < 0.3 then
+	-- 	if math.random() > 0.5 then
+	-- 		newred = red + dist
+	-- 	else
+	-- 		newred = red - dist
+	-- 	end
+	-- elseif mathr < 0.6 then
+	-- 	if math.random() > 0.5 then
+	-- 		newblue = blue + dist
+	-- 	else
+	-- 		newblue = blue - dist
+	-- 	end
+	-- else
+	-- 	if math.random() > 0.5 then
+	-- 		newgreen = green + dist
+	-- 	else
+	-- 		newgreen = green - dist
+	-- 	end
+		newred = red + math.floor(math.random()*dist - dist/2)
+		newblue = blue + math.floor(math.random()*dist - dist/2)
+		newgreen = green + math.floor(math.random()*dist - dist/2)
+	end
+	-- print(" " .. red .. " " .. newred .. " " .. blue .. " " .. newblue .. " " .. green .. " " .. newgreen)
+	grid[x][y].red = newred
+	grid[x][y].blue = newblue
+	grid[x][y].green = newgreen
 end
 
 

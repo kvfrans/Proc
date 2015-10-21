@@ -1,4 +1,5 @@
 grid = {}
+newgrid = {}
 collisionGrid = {}
 cronjobs = {}
 npc = {}
@@ -28,3 +29,7 @@ gridsize = 600
 math.randomseed(os.time())
 seed = math.random()
 print(seed)
+
+function gridAt(x,y)
+	return grid[x][y]
+end

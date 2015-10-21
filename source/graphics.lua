@@ -161,10 +161,16 @@ function graphicsDrawPOV()
 		        local current = grid[x][y]
 		        if current.kind == 0 then
 		        	if y > 100 then
-			        	love.graphics.setColor(117,74,25)
+			        	love.graphics.setColor(current.red,current.green,current.blue)
+			        	if current.red == 0 and current.blue == 0 and current.green == 0 then
+			        		love.graphics.setColor(117,74,25)
+			        	end
 			        	drawBlock(x,y)
 			        else
-			        	love.graphics.setColor(150,150,255)
+			        	love.graphics.setColor(current.red,current.green,current.blue)
+			        	if current.red == 0 and current.blue == 0 and current.green == 0 then
+			        		love.graphics.setColor(150,150,255)
+			        	end
 			        	drawBlock(x,y)
 			        end
 		        end
@@ -201,14 +207,14 @@ function graphicsDrawPOV()
 		        	drawBlock(x,y)
 		        end
 		        if current.kind == 2 then
-		        	love.graphics.setColor(117,74,25)
-		        	drawBlock(x,y)
+		        	-- love.graphics.setColor(117,74,25)
+		        	-- drawBlock(x,y)
 		        	love.graphics.setColor(64,140,255,current.waterDensity)
 		        	drawBlock(x,y)
 		        end
 		        if current.kind == 3 then
-		        	love.graphics.setColor(117,74,25)
-		        	drawBlock(x,y)
+		        	-- love.graphics.setColor(117,74,25)
+		        	-- drawBlock(x,y)
 		        	love.graphics.setColor(64,140,255,current.waterDensity)
 		        	drawBlock(x,y)
 		        end
