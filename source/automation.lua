@@ -9,7 +9,9 @@
 
 -- 10 - hardblock
 
--- 20 - some ore
+-- 20 - mono
+-- 21 - kuro
+-- 23 - tabe
 
 
 
@@ -74,6 +76,7 @@ function copyBlock(x,y,origin)
 	copy.red = origin[x][y].red
 	copy.blue = origin[x][y].blue
 	copy.green = origin[x][y].green
+	copy.playerlight = origin[x][y].playerlight
 	return copy
 end
 
@@ -86,9 +89,14 @@ end
 
 function interact(x,y)
 	local current = grid[x][y]
-	if current.kind == 7 then
-		local parentframe = loveframes.Create("frame")
-		local button1 = loveframes.Create("button", parentframe)
-		button1:SetPos(5, 35)
-	end
+	-- if current.kind == 7 then
+	-- 	local parentframe = loveframes.Create("frame")
+	-- 	local button1 = loveframes.Create("button", parentframe)
+	-- 	button1:SetPos(5, 35)
+	-- end
+	-- if current.kind == 0 then
+	-- 	local frame = loveframes.Create("frame")
+	-- 	frame:SetName("BG: " .. current.red .. " " .. current.green .. " " .. current.blue)
+	-- end
+	printGUI("BG: " .. current.red .. " " .. current.green .. " " .. current.blue)
 end

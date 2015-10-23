@@ -1,17 +1,41 @@
-function buildingUpdate(dt)
+function buildingUpdate(start)
 	local mouseBlockX = math.floor((love.mouse.getX()+camera.x)/scale)
 	local mouseBlockY = math.floor((love.mouse.getY()+camera.y)/scale)
-	valuetrain.mousex = mouseBlockX
-	valuetrain.mousey = mouseBlockY
+	-- valuetrain.mousex = mouseBlockX
+	-- valuetrain.mousey = mouseBlockY
 
 	if love.mouse.isDown("l") and buildingRange(mouseBlockX,mouseBlockY) then
+
+		if grid[mouseBlockX][mouseBlockY].kind ~= 0 or
+			grid[mouseBlockX+1][mouseBlockY+1].kind ~= 0 or
+				grid[mouseBlockX+1][mouseBlockY-1].kind ~= 0 or
+					grid[mouseBlockX+1][mouseBlockY].kind ~= 0 or
+						grid[mouseBlockX-1][mouseBlockY+1].kind ~= 0 or
+							grid[mouseBlockX-1][mouseBlockY-1].kind ~= 0 or
+								grid[mouseBlockX-1][mouseBlockY].kind ~= 0 or
+									grid[mouseBlockX][mouseBlockY+1].kind ~= 0 or
+										grid[mouseBlockX][mouseBlockY-1].kind ~= 0 then
+			buildUpdate()
+		end
+
 		grid[mouseBlockX][mouseBlockY].kind = 0
+		grid[mouseBlockX+1][mouseBlockY+1].kind = 0
+		grid[mouseBlockX+1][mouseBlockY-1].kind = 0
+		grid[mouseBlockX+1][mouseBlockY].kind = 0
+		grid[mouseBlockX-1][mouseBlockY+1].kind = 0
+		grid[mouseBlockX-1][mouseBlockY-1].kind = 0
+		grid[mouseBlockX-1][mouseBlockY].kind = 0
+		grid[mouseBlockX][mouseBlockY+1].kind = 0
+		grid[mouseBlockX][mouseBlockY-1].kind = 0
+		-- buildUpdate()
+
 	end
 
-	if love.mouse.isDown("r") and buildingRange(mouseBlockX,mouseBlockY) then
-		interact(mouseBlockX,mouseBlockY)
-	end
+	-- if love.mouse.isDown("r") and start and buildingRange(mouseBlockX,mouseBlockY) then
+	-- 	interact(mouseBlockX,mouseBlockY)
+	-- end
 end
+
 
 function buildingRange(x,y)
 	local px = math.floor(player.x)
@@ -30,4 +54,26 @@ function helperDistance(x1,y1,x2,y2)
 	local ys = y2 - y1;
 	ys = ys * ys;
 	return math.sqrt( xs + ys );
+end
+
+
+function buildUpdate()
+	local px = math.floor(player.x)
+	local py = math.floor(player.y)
+	for y = 1,gridsize do
+		for x = 1,gridsize do
+			if (x + 1) * scale > camera.x and (y + 1) * scale > camera.y and (x - 1) * scale < camera.x + winW and (y - 1) * scale < camera.y + winH then
+				grid[x][y].light = baselight
+			end
+		end
+	end
+	for y = 1,gridsize do
+		for x = 1,gridsize do
+			if (x + 1) * scale > camera.x and (y + 1) * scale > camera.y and (x - 1) * scale < camera.x + winW and (y - 1) * scale < camera.y + winH then
+				if grid[x][y].kind == 4 then
+					helperLights(grid,x,y)
+				end
+			end
+		end
+	end
 end

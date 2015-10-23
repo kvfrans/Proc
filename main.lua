@@ -33,7 +33,7 @@ function love.update(dt)
 	cameraUpdate(dt)
 	playerMove(dt)
 	keyUpdate(dt)
-	buildingUpdate(dt)
+	buildingUpdate(false)
 	loveframes.update(dt)
 end
 
@@ -43,7 +43,12 @@ end
 
 function love.mousepressed(x, y, button)
     loveframes.mousepressed(x, y, button)
-    print("asd")
+    buildingUpdate(true)
+
+    -- if button == "l" then
+    -- 	buildRemove(x,y)
+    -- end
+    -- print("asd")
 end
 
 function love.mousereleased(x, y, button)

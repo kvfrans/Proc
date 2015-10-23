@@ -116,6 +116,8 @@ function playerMove(dt)
 			player.y = player.y - fallLeft
 		end
 	end
+
+	-- playerLights()
 end
 
 function playerCollidingDown(small)
@@ -189,6 +191,7 @@ function playerCollidingUp(small)
 	end
 	return false
 end
+
 
 
 function CheckCollision(x1,y1,w1,h1, x2,y2,w2,h2)

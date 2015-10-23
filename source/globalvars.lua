@@ -8,6 +8,11 @@ valuetrain = {
 	mousey = 0
 }
 
+baselight = 75
+
+spriteCache = {}
+dirtBatch = {}
+
 player = {
 	x = 0,
 	y = 0
@@ -32,4 +37,9 @@ print(seed)
 
 function gridAt(x,y)
 	return grid[x][y]
+end
+
+function printGUI(string)
+	local frame = loveframes.Create("frame")
+	frame:SetName(string)
 end
