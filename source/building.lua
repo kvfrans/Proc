@@ -6,27 +6,17 @@ function buildingUpdate(start)
 
 	if love.mouse.isDown("l") and buildingRange(mouseBlockX,mouseBlockY) then
 
-		if grid[mouseBlockX][mouseBlockY].kind ~= 0 or
-			grid[mouseBlockX+1][mouseBlockY+1].kind ~= 0 or
-				grid[mouseBlockX+1][mouseBlockY-1].kind ~= 0 or
-					grid[mouseBlockX+1][mouseBlockY].kind ~= 0 or
-						grid[mouseBlockX-1][mouseBlockY+1].kind ~= 0 or
-							grid[mouseBlockX-1][mouseBlockY-1].kind ~= 0 or
-								grid[mouseBlockX-1][mouseBlockY].kind ~= 0 or
-									grid[mouseBlockX][mouseBlockY+1].kind ~= 0 or
-										grid[mouseBlockX][mouseBlockY-1].kind ~= 0 then
+		if breakBlock(mouseBlockX,mouseBlockY) ~= 0 or
+			breakBlock(mouseBlockX+1,mouseBlockY+1) ~= 0 or
+				breakBlock(mouseBlockX+1,mouseBlockY-1) ~= 0 or
+					breakBlock(mouseBlockX+1,mouseBlockY) ~= 0 or
+						breakBlock(mouseBlockX-1,mouseBlockY+1) ~= 0 or
+							breakBlock(mouseBlockX-1,mouseBlockY-1) ~= 0 or
+								breakBlock(mouseBlockX-1,mouseBlockY) ~= 0 or
+									breakBlock(mouseBlockX,mouseBlockY+1) ~= 0 or
+										breakBlock(mouseBlockX,mouseBlockY-1) ~= 0 then
 			buildUpdate()
 		end
-
-		grid[mouseBlockX][mouseBlockY].kind = 0
-		grid[mouseBlockX+1][mouseBlockY+1].kind = 0
-		grid[mouseBlockX+1][mouseBlockY-1].kind = 0
-		grid[mouseBlockX+1][mouseBlockY].kind = 0
-		grid[mouseBlockX-1][mouseBlockY+1].kind = 0
-		grid[mouseBlockX-1][mouseBlockY-1].kind = 0
-		grid[mouseBlockX-1][mouseBlockY].kind = 0
-		grid[mouseBlockX][mouseBlockY+1].kind = 0
-		grid[mouseBlockX][mouseBlockY-1].kind = 0
 		-- buildUpdate()
 
 	end
@@ -34,6 +24,19 @@ function buildingUpdate(start)
 	-- if love.mouse.isDown("r") and start and buildingRange(mouseBlockX,mouseBlockY) then
 	-- 	interact(mouseBlockX,mouseBlockY)
 	-- end
+end
+
+function breakBlock(x,y)
+	if grid[x][y].kind ~= 0 then
+		grid[x][y].kind = 0
+		local item = itemInit()
+		item.x = x + 0.25
+		item.y = y + 0.25
+		table.insert(items,item)
+		return true
+	else
+		return false
+	end
 end
 
 

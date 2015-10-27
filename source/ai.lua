@@ -62,3 +62,11 @@ function blockAt(x,y)
 		return true
 	end
 end
+
+function caveBlockAt(x,y)
+	if grid[x][y].kind == 1 or grid[x][y].kind == 20 or grid[x][y].kind == 21 or grid[x][y].kind == 22 or grid[x][y].kind == 23 then
+		return true
+	else
+		return false
+	end
+end

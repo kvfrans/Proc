@@ -11,7 +11,7 @@
 
 -- 20 - mono
 -- 21 - kuro
--- 23 - tabe
+-- 22 - tabe
 
 
 

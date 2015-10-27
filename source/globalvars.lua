@@ -3,6 +3,7 @@ newgrid = {}
 collisionGrid = {}
 cronjobs = {}
 npc = {}
+items = {}
 valuetrain = {
 	mousex = 0,
 	mousey = 0

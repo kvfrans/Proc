@@ -12,6 +12,7 @@ KeyMap = require "modules.keymap"
 keySource = require "source.keymaphandle"
 building = require "source.building"
 loveframes = require "frames"
+inventory = require "source.inventory"
 
 
 function love.load()
@@ -23,6 +24,7 @@ function love.load()
 	keyInit()
 	loveframes.update(dt)
 	love.keyboard.setKeyRepeat(true)
+	inventoryInit()
 end
 
 function love.update(dt)
@@ -32,9 +34,15 @@ function love.update(dt)
 	-- automationTick()
 	cameraUpdate(dt)
 	playerMove(dt)
-	keyUpdate(dt)
 	buildingUpdate(false)
 	loveframes.update(dt)
+	for i = 1, #items do
+		if itemUpdate(items[i],dt) then
+			table.remove(items,i)
+			break
+		end
+	end
+	keyUpdate(dt)
 end
 
 function love.draw()

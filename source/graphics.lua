@@ -169,28 +169,28 @@ function graphicsDrawPOV()
 		    end
 	        drawBlock(x,y)
 
-	        if current.kind == 1 or current.kind == 20 or current.kind == 21 or current.kind == 22 then
+	        if caveBlockAt(x,y) then
 		        local thick = 2
 	        	if y > 1 then
-	        		if grid[x][y-1].kind == 0 then
+	        		if not caveBlockAt(x,y-1) then
 	        			love.graphics.setColor(0,0,0)
 	        			love.graphics.rectangle("fill",x*scale - camera.x,y*scale - camera.y,scale,thick)
 	        		end
 	        	end
 	        	if x > 1 then
-	        		if grid[x-1][y].kind == 0 then
+	        		if not caveBlockAt(x-1,y) then
 	        			love.graphics.setColor(0,0,0)
 	        			love.graphics.rectangle("fill",x*scale - camera.x,y*scale - camera.y,thick,scale)
 	        		end
 	        	end
 	        	if x < gridsize then
-	        		if grid[x+1][y].kind == 0 then
+	        		if not caveBlockAt(x+1,y) then
 	        			love.graphics.setColor(0,0,0)
 	        			love.graphics.rectangle("fill",(x+1)*scale - camera.x - thick,y*scale - camera.y,thick,scale)
 	        		end
 	        	end
 	        	if y < gridsize then
-	        		if grid[x][y+1].kind == 0 then
+	        		if not caveBlockAt(x,y+1) then
 	        			love.graphics.setColor(0,0,0)
 	        			love.graphics.rectangle("fill",x*scale - camera.x,(y+1)*scale - camera.y - thick,scale,thick)
 	        		end
@@ -199,12 +199,28 @@ function graphicsDrawPOV()
 		end
 	end
 
+	for i = 1, #items do
+		local item = items[i]
+		-- if item.x < startx or item.y < starty or item.x > endx or item.y > endy then
+		-- 	table.remove(item,i)
+		-- 	break
+		-- end
+		if item.kind == 1 then
+			love.graphics.draw(spriteCache.dirt,(item.x)*scale - camera.x,(item.y)*scale - camera.y,0)
+		end
+
+	end
+
 	love.graphics.setColor(0,255,255)
     drawBlock(player.x,player.y)
     love.graphics.setColor(255,0,255)
     love.graphics.rectangle("fill",player.x*scale - camera.x,player.y*scale - camera.y,scale/2,scale/2)
 	love.graphics.setColor(255,255,255)
-	love.graphics.print("" .. framespast,100,300)
+	love.graphics.print("" .. #items,100,300)
+
+	love.graphics.draw(spriteCache.dirt,10,12,0,2,2)
+	love.graphics.print("" .. player.inventory[1],34,10)
+
 	loveframes.draw()
 end
 
@@ -240,7 +256,7 @@ function drawLights(baseX,baseY)
 				if grid[math.floor(currentX)][math.floor(currentY)+1].playerlight == 0 then
 					grid[math.floor(currentX)][math.floor(currentY)+1].playerlight = light/2
 				end
-				if pointCollide(px,py,currentX,currentY) then
+				if pointCollide(px,py,currentX,currentY,0.5,0.5) then
 					break
 				end
 			else
@@ -252,12 +268,12 @@ function drawLights(baseX,baseY)
 	end
 end
 
-function pointCollide(px,py,sx,sy)
+function pointCollide(px,py,sx,sy,offsetx,offsety)
 	for y = py - 13, py + 13 do
 	    for x = px - 13, px + 13 do
 	    	if y > 1 and y < gridsize -1 and x > 1 and x < gridsize - 1 then
 		    	if blockAt(x,y) then
-			    	if CheckCollision(sx,sy,0.1,0.1,x,y,1,1) then
+			    	if CheckCollision(sx + offsetx - 0.05,sy + offsety - 0.05,0.1,0.1,x,y,1,1) then
 			    		return true
 			    	end
 			    end

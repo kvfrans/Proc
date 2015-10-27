@@ -423,7 +423,7 @@ function helperLights(localgrid,basex,basey)
 					grid[math.floor(currentX)][math.floor(currentY)+1].light = light/2
 				end
 			end
-			if pointCollide(basex,basey,currentX,currentY) then
+			if pointCollide(basex,basey,currentX,currentY,0.5,0.5) then
 				break
 			end
 		end
