@@ -1,0 +1,1366 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pla",
+				"player"
+			],
+			[
+				"ju",
+				"jumpsleft"
+			],
+			[
+				"item",
+				"itemInit	(inventory.lua)"
+			],
+			[
+				"mou",
+				"mouseBlockY"
+			],
+			[
+				"mos",
+				"mouseBlockX"
+			],
+			[
+				"brea",
+				"breakBlock"
+			],
+			[
+				"draw",
+				"drawBlock"
+			],
+			[
+				"en",
+				"endy"
+			],
+			[
+				"st",
+				"starty"
+			],
+			[
+				"ke",
+				"keyCode"
+			],
+			[
+				"thu",
+				"thrustersOn"
+			],
+			[
+				"for",
+				"forwarded"
+			],
+			[
+				"s",
+				"style	Attr"
+			],
+			[
+				"access",
+				"access_token"
+			],
+			[
+				"lea",
+				"leaning"
+			],
+			[
+				"inv",
+				"inventoryUpdate	(inventory.lua)"
+			],
+			[
+				"g",
+				"grid"
+			],
+			[
+				"bas",
+				"baselight"
+			],
+			[
+				"win",
+				"winW"
+			],
+			[
+				"or",
+				"or"
+			],
+			[
+				"muo",
+				"mouseBlockY"
+			],
+			[
+				"build",
+				"buildUpdate"
+			],
+			[
+				"base",
+				"baselight	(graphics.lua)"
+			],
+			[
+				"player",
+				"playerlight	(generation.lua)"
+			],
+			[
+				"cur",
+				"currentY"
+			],
+			[
+				"mous",
+				"mousex"
+			],
+			[
+				"curr",
+				"currentX"
+			],
+			[
+				"cu",
+				"currentX"
+			],
+			[
+				"playe",
+				"playerLights"
+			],
+			[
+				"play",
+				"playerLights"
+			],
+			[
+				"bui",
+				"buildRemove	(building.lua)"
+			],
+			[
+				"red",
+				"redDist"
+			],
+			[
+				"new",
+				"newred"
+			],
+			[
+				"buil",
+				"buildingCall	(building.lua)"
+			],
+			[
+				"math",
+				"mathr"
+			],
+			[
+				"y",
+				"yVel"
+			],
+			[
+				"auto",
+				"automationTick"
+			],
+			[
+				"val",
+				"valuetrain	(globalvars.lua)"
+			],
+			[
+				"get",
+				"getX	(camera.lua)"
+			],
+			[
+				"aut",
+				"automationTick	(automation.lua)"
+			],
+			[
+				"fall",
+				"fallLeft"
+			],
+			[
+				"playerC",
+				"playerCollidingUp"
+			],
+			[
+				"cam",
+				"cameraspeed"
+			],
+			[
+				"make",
+				"maketree"
+			],
+			[
+				"mak",
+				"maketree"
+			],
+			[
+				"blo",
+				"blockAt	(generation.lua)"
+			],
+			[
+				"block",
+				"blockAt	(ai.lua)"
+			],
+			[
+				"biome",
+				"biomecanvas"
+			],
+			[
+				"i",
+				"insert"
+			],
+			[
+				"cop",
+				"copyBlock"
+			],
+			[
+				"copy",
+				"copyBlock	(automation.lua)"
+			],
+			[
+				"se",
+				"setColor"
+			],
+			[
+				"ai",
+				"aiInit	(ai.lua)"
+			],
+			[
+				"background-c",
+				"background-color"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"re",
+				"reloadTable"
+			],
+			[
+				"searc",
+				"searchbar"
+			],
+			[
+				"coll",
+				"collisionBlockUpdate	(collision.lua)"
+			],
+			[
+				"setc",
+				"setCanvas"
+			],
+			[
+				"cron",
+				"cronjobs	(main.lua)"
+			],
+			[
+				"gr",
+				"graphics"
+			],
+			[
+				"local",
+				"localgrid"
+			],
+			[
+				"dis",
+				"distanceY"
+			],
+			[
+				"rand",
+				"randomBase"
+			],
+			[
+				"wa",
+				"waterDensity"
+			],
+			[
+				"wat",
+				"waterDensity	(generation.lua)"
+			],
+			[
+				"stu",
+				"studentID"
+			],
+			[
+				"bo",
+				"body"
+			],
+			[
+				"me",
+				"memberSchema"
+			],
+			[
+				"va",
+				"val"
+			],
+			[
+				"subm",
+				"submitEmail	(main.js)"
+			],
+			[
+				"email",
+				"emailRegister	(index.html)"
+			],
+			[
+				"air",
+				"airNeighbors"
+			],
+			[
+				"help",
+				"helperNeighbors"
+			],
+			[
+				"grid",
+				"gridsize"
+			],
+			[
+				"loc",
+				"localgrid"
+			],
+			[
+				"gener",
+				"generationAll"
+			],
+			[
+				"gene",
+				"generationInit	(generation.lua)"
+			],
+			[
+				"foc",
+				"focustime"
+			],
+			[
+				"focu",
+				"focustime"
+			],
+			[
+				"focus",
+				"focustime"
+			],
+			[
+				"bullet",
+				"bulletCollision"
+			],
+			[
+				"slow",
+				"slowmove	(player.lua)"
+			],
+			[
+				"yv",
+				"yVelocity"
+			],
+			[
+				"spawn",
+				"spawnerInit	(spawner.lua)"
+			],
+			[
+				"mi",
+				"militaryBarrage"
+			],
+			[
+				"mt",
+				"mtv_y"
+			],
+			[
+				"jump",
+				"jump"
+			],
+			[
+				"remo",
+				"removeCron"
+			],
+			[
+				"remove",
+				"removeCron	(globalvars.lua)"
+			],
+			[
+				"mili",
+				"militaryAim	(player.lua)"
+			],
+			[
+				"cas",
+				"casting"
+			],
+			[
+				"militar",
+				"militaryCastingUpdate	(player.lua)"
+			],
+			[
+				"x",
+				"xVel	(player.lua)"
+			],
+			[
+				"hit",
+				"hitbox"
+			],
+			[
+				"can",
+				"canmove"
+			],
+			[
+				"bulletset",
+				"bulletSetSpeed"
+			],
+			[
+				"move",
+				"movenumber"
+			],
+			[
+				"midd",
+				"middleY"
+			],
+			[
+				"middl",
+				"middleX"
+			],
+			[
+				"came",
+				"cameraInit	(camera.lua)"
+			],
+			[
+				"playermove",
+				"playerMoveRight"
+			],
+			[
+				"bu",
+				"bullet"
+			],
+			[
+				"bull",
+				"bulletCalculateVelocity"
+			],
+			[
+				"co",
+				"collider	(collision.lua)"
+			],
+			[
+				"bloc",
+				"blockCollision"
+			],
+			[
+				"on",
+				"onGround	(player.lua)"
+			],
+			[
+				"sha",
+				"shape_a"
+			],
+			[
+				"shape",
+				"shape_a"
+			],
+			[
+				"mo",
+				"move	(player.lua)"
+			],
+			[
+				"sh",
+				"shape_b"
+			],
+			[
+				"mtv",
+				"mtv_x"
+			],
+			[
+				"jumps",
+				"jumpsleft"
+			],
+			[
+				"vol",
+				"volint"
+			],
+			[
+				"Chan",
+				"ChangeMusicVol"
+			],
+			[
+				"dire",
+				"directionNumber"
+			],
+			[
+				"boss",
+				"bossSpray"
+			],
+			[
+				"mov",
+				"moveBoss"
+			],
+			[
+				"flas",
+				"flashCount"
+			],
+			[
+				"fla",
+				"flashCount"
+			],
+			[
+				"fl",
+				"flashCount"
+			],
+			[
+				"Start",
+				"StartCoroutine"
+			],
+			[
+				"f",
+				"false"
+			],
+			[
+				"bl",
+				"blast"
+			],
+			[
+				"fil",
+				"fillStyle"
+			],
+			[
+				"mom",
+				"momentum"
+			],
+			[
+				"m",
+				"momentum"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "main.lua",
+			"settings":
+			{
+				"buffer_size": 1678,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/building.lua",
+			"settings":
+			{
+				"buffer_size": 2231,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/player.lua",
+			"settings":
+			{
+				"buffer_size": 4827,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/ai.lua",
+			"settings":
+			{
+				"buffer_size": 1209,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/graphics.lua",
+			"settings":
+			{
+				"buffer_size": 9174,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/tools.lua",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/inventory.lua",
+			"settings":
+			{
+				"buffer_size": 1100,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/automation.lua",
+			"settings":
+			{
+				"buffer_size": 2646,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/globalvars.lua",
+			"settings":
+			{
+				"buffer_size": 555,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/generation.lua",
+			"settings":
+			{
+				"buffer_size": 14228,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 127.0,
+		"last_filter": "Package Control: ins",
+		"selected_items":
+		[
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"love",
+				"Set Syntax: Lua (Love)"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"a",
+				"Package Control: Install Package"
+			],
+			[
+				"sub",
+				"SublimeLinter: Next Error"
+			],
+			[
+				"sublimelinter",
+				"SublimeLinter: Next Error"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"clear",
+			"view.run_command(\"example\")",
+			"view.runCommand('ExampleCommand');",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/kevin/Downloads/LoL-Replay-master/conf/app.conf",
+		"/Users/kevin/Documents/Text/Perpetual-Notepad/note.pad",
+		"/Users/kevin/Documents/XCode/HackChair/site/index.html",
+		"/Users/kevin/Downloads/javascript-breakout-master/index.html",
+		"/Users/kevin/Downloads/pleasetutorme 3/views/index.jade",
+		"/Users/kevin/Documents/XCode/HackChair/site/server.js",
+		"/Users/kevin/Downloads/javascript-breakout-master/game.js",
+		"/Users/kevin/Downloads/pleasetutorme 3/routes/index.js",
+		"/Users/kevin/Documents/XCode/HackChair/.gitignore",
+		"/Users/kevin/Downloads/javascript-breakout-master/hackchair.js",
+		"/Users/kevin/Downloads/pleasetutorme 3/app.js",
+		"/Users/kevin/Downloads/pleasetutorme 3/package.json",
+		"/Users/kevin/Downloads/javascript-racer-master/index.html",
+		"/Users/kevin/Downloads/helicopter-master 2/index.html",
+		"/Users/kevin/Downloads/helicopter-master 2/js/helicopter.js",
+		"/Users/kevin/Downloads/helicopter-master 2/js/hackchair.js",
+		"/Users/kevin/Documents/XCode/HackChair/site/hackchair.js",
+		"/Users/kevin/Documents/XCode/HackChair/site/main.css",
+		"/Users/kevin/Downloads/javascript-racer-master/v4.final.html",
+		"/Users/kevin/Documents/XCode/HackChair/site/derp.html",
+		"/Users/kevin/Documents/XCode/HackChair/site/main.js",
+		"/Users/kevin/Downloads/site/jQueryRotate.js",
+		"/Users/kevin/Documents/XCode/HackChair/Server/index.html",
+		"/Users/kevin/Documents/Javascript/Realtime Bullethell/server.js",
+		"/Users/kevin/Downloads/site/index.html",
+		"/Users/kevin/Documents/XCode/HackChair/Server/main.js",
+		"/Applications/libmuse/libmuse_ios_1.2.0/README.md",
+		"/Users/kevin/Downloads/libmuse_ios_1.2.0/README.md",
+		"/Users/kevin/Documents/XCode/HackChair/Podfile",
+		"/Users/kevin/Documents/Lua/proc/source/camera.lua",
+		"/Users/kevin/Documents/Lua/proc/source/inventory.lua",
+		"/Users/kevin/Documents/Lua/proc/source/ai.lua",
+		"/Users/kevin/Documents/Lua/proc/source/KeyMapHandle.lua",
+		"/Users/kevin/Documents/Lua/proc/main.lua",
+		"/Users/kevin/Documents/Lua/proc/source/player.lua",
+		"/Users/kevin/Documents/Lua/proc/source/globalvars.lua",
+		"/Users/kevin/Documents/Lua/proc/source/generation.lua",
+		"/Users/kevin/Documents/Lua/proc/source/building.lua",
+		"/Users/kevin/Documents/Lua/proc/source/automation.lua",
+		"/Users/kevin/Documents/XCode/HackChair/Server/server.js",
+		"/Users/kevin/Documents/Lua/proc/source/graphics.lua",
+		"/Users/kevin/Documents/Javascript/Realtime Bullethell/main.js",
+		"/Users/kevin/Documents/Javascript/Realtime Bullethell/index.html",
+		"/Users/kevin/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/kevin/Documents/Lua/plat/source/bullet.lua",
+		"/Users/kevin/Documents/Lua/proc/modules/KeyMap.lua",
+		"/Users/kevin/Documents/Java/USCAO/nocows.in",
+		"/Users/kevin/Documents/Lua/proc/frames/init.lua",
+		"/Users/kevin/Documents/Lua/plat/source/militaryClass.lua",
+		"/Users/kevin/Documents/Lua/plat/source/player.lua",
+		"/Users/kevin/Documents/Lua/plat/source/camera.lua",
+		"/Users/kevin/Documents/Java/USCAO/prefix.in",
+		"/Users/kevin/Documents/Lua/proc/source/collision.lua",
+		"/Users/kevin/Downloads/manageme/app.js",
+		"/Users/kevin/Downloads/manageme/node_modules/db.js",
+		"/Users/kevin/Documents/XCode/Calhacks/index.html",
+		"/Users/kevin/Documents/XCode/Calhacks/Podfile",
+		"/usr/local/CrossPack-AVR-20131216/manual/index.html",
+		"/Users/kevin/Documents/XCode/Clarifai/Podfile",
+		"/Users/kevin/Documents/Lua/plat/main.lua",
+		"/Users/kevin/Documents/Lua/plat/source/collision.lua",
+		"/Users/kevin/Documents/Lua/proc/collision.lua",
+		"/Users/kevin/Documents/Lua/plat/source/basicstage.lua",
+		"/Users/kevin/Documents/Lua/plat/source/graphics.lua",
+		"/Users/kevin/Documents/Javascript/DECA/server.js",
+		"/Users/kevin/Documents/Javascript/DECA/index.html",
+		"/Users/kevin/Documents/Javascript/DECA/main.js",
+		"/Users/kevin/Documents/Javascript/DECA/README.md",
+		"/Users/kevin/Documents/Javascript/DECA/stolen.css",
+		"/Users/kevin/Documents/Javascript/DECA/test.html",
+		"/Users/kevin/Documents/Lua/proc/sources/globalvars.lua",
+		"/Users/kevin/Documents/Lua/proc/sources/graphics.lua",
+		"/Users/kevin/Documents/Lua/proc/cron.lua",
+		"/Users/kevin/Documents/Lua/plat/source/globalvars.lua",
+		"/Applications/League of Legends.app/Contents/LoL/Config/PersistedSettings.json",
+		"/Users/kevin/Documents/Lua/plat/source/spawner.lua",
+		"/Users/kevin/Documents/Lua/plat/source/game.lua",
+		"/Users/kevin/Documents/Java/USCAO/lamps.in",
+		"/Applications/League of Legends.app/Contents/LoL/Config/input.ini",
+		"/Users/kevin/Documents/Java/USCAO/runround.in",
+		"/Users/kevin/Documents/Java/USCAO/runround.out",
+		"/Users/kevin/Documents/Java/USCAO/runaround.in",
+		"/Users/kevin/Documents/Lua/plat/HardonCollider/init.lua",
+		"/Users/kevin/Documents/Lua/plat/source/KeyMapHandle.lua",
+		"/Users/kevin/Documents/Lua/plat/HardonCollider/shapes.lua",
+		"/Users/kevin/Documents/Lua/touhou clone/main.lua",
+		"/Users/kevin/Documents/Unity/pyromancer/Assets/CharacterController2D/Demo/scripts/SmoothFollow.cs",
+		"/Users/kevin/Documents/Java/USCAO/subset.in",
+		"/Users/kevin/Documents/Java/USCAO/subset.out",
+		"/Users/kevin/Documents/Lua/platformer/main.lua",
+		"/Users/kevin/.ssh/id_rsa.pub",
+		"/Users/kevin/Documents/Lua/plat/modules/KeyMap.lua",
+		"/Users/kevin/Downloads/KeyMap/main.lua",
+		"/Users/kevin/Documents/Lua/plat/scripts/graphics.lua",
+		"/Users/kevin/Documents/Lua/plat/scripts/globalvars.lua",
+		"/Users/kevin/Documents/Java/USCAO/preface.in",
+		"/Users/kevin/Documents/Lua/platformer/strict.lua",
+		"/Users/kevin/Documents/Lua/platformer/AdvTiledLoader/Tile.lua",
+		"/Users/kevin/Downloads/camera.html",
+		"/Users/kevin/Documents/Java/USCAO/hamming.out",
+		"/Users/kevin/Documents/Java/USCAO/hamming.in",
+		"/Users/kevin/Documents/Injection/src/dy/main.cpp",
+		"/Users/kevin/Documents/Injection/src/testapp/main.cpp",
+		"/Users/kevin/Downloads/test2.html",
+		"/Users/kevin/Downloads/test.js",
+		"/Users/kevin/Documents/Injection/src/osxinj/main.cpp",
+		"/Users/kevin/Downloads/osxinj_tut-master/src/testapp/main.cpp",
+		"/Users/kevin/Downloads/osxinj_tut-master/src/dy/main.cpp",
+		"/Users/kevin/Downloads/osxinj_tut-master/src/osxinj/main.cpp",
+		"/Users/kevin/Documents/theos/iosregreetings/control",
+		"/Users/kevin/Documents/theos/iosregreetings/Makefile",
+		"/Users/kevin/Documents/Java/USCAO/answer.cpp",
+		"/Users/kevin/Documents/theos/iosregreetings/Tweak.xm",
+		"/Users/kevin/Documents/Java/USCAO/frac1.in",
+		"/Users/kevin/Documents/Java/USCAO/sort3.in",
+		"/Users/kevin/Documents/theos/iosreproject/Makefile",
+		"/Users/kevin/Documents/theos/iosreproject/Tweak.xm",
+		"/Users/kevin/.ssh/known_hosts",
+		"/Users/kevin/Documents/Unity/pyromancer/Assets/Scripts/Player.cs",
+		"/Users/kevin/Documents/Unity/New/Assets/Scripts/General/HealthScript.cs",
+		"/Users/kevin/Documents/Unity/New/Assets/Scripts/Global Scripts/GUIScript.cs",
+		"/Users/kevin/Documents/Unity/New/Assets/Scripts/General/NextLevelScript.cs",
+		"/Users/kevin/Documents/Unity/New/Assets/Scripts/Global Scripts/CarryOverVariables.cs",
+		"/Users/kevin/Documents/Unity/New/Assets/Scripts/General/PlayerScript.cs",
+		"/Users/kevin/Documents/Unity/New/Assets/Scripts/Global Scripts/SpellHelper.cs",
+		"/Users/kevin/Documents/Unity/New/Assets/Scripts/General/SpellSelectionScript.cs",
+		"/Users/kevin/Documents/Java/USCAO/sprime.in",
+		"/Users/kevin/Documents/Text/the young pyromancer"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"selection",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"break",
+			"helperli",
+			"3000",
+			"css",
+			"doctype",
+			"3000",
+			"keys",
+			"update",
+			"up",
+			"key",
+			"0,0,0",
+			"buildrem",
+			"blockat",
+			"20",
+			"red",
+			"grid[x][y]",
+			"copybl",
+			"drawBlock()",
+			"love.graphics.rectangle(\"fill\",x*scale,y*scale,scale,scale)",
+			"2",
+			"%;",
+			"seed",
+			")\n",
+			"mast",
+			"mas",
+			"master",
+			"remove",
+			"transl",
+			" \n",
+			"iOS",
+			"iosip",
+			"light",
+			"speed",
+			"canDamage",
+			"health",
+			"\"",
+			"anim",
+			"spell",
+			"totalcooldown",
+			"cooldown",
+			"rect",
+			"spell",
+			"direction",
+			"moveboss",
+			"movebo",
+			"move",
+			"boss.sp",
+			"shootbossf",
+			"before",
+			"addchi",
+			"makebu",
+			"<<",
+			"<",
+			"init",
+			"io.emit",
+			"playershot",
+			"init",
+			"background",
+			"backg",
+			"white",
+			"color",
+			"respaw",
+			"physi",
+			"mutate",
+			"circle",
+			"startne",
+			"startneu",
+			"momen",
+			"momentum",
+			"TARGET_ST",
+			"TARGET_S",
+			"RAND_BL",
+			"mainl",
+			"timer",
+			"mainlo",
+			"mmainl",
+			"move",
+			"user.move",
+			"thrustersOn",
+			"mainloop",
+			"terrain",
+			"mainloop",
+			"json",
+			"died",
+			"drawtar",
+			"TARGET_S",
+			"thrustersOn",
+			"thrusters",
+			"terrain",
+			"user",
+			"mousedown",
+			"HELICOP",
+			"newGame",
+			"enter",
+			"drawu",
+			"drawuser",
+			"startneu",
+			"color",
+			"moveTerr",
+			"_terrain",
+			"terrain",
+			"draw",
+			"Heli.col",
+			"drawterr",
+			"root",
+			"crash",
+			"cooldown",
+			"getkey",
+			"testnet",
+			"console.log",
+			"score",
+			"tick",
+			"bias",
+			";\n",
+			"hasrun",
+			"addlink",
+			"links.p",
+			"setvalue",
+			"activated",
+			"time",
+			"text",
+			"innovation",
+			"console.log",
+			"generatenet",
+			"innov",
+			"zeru",
+			"initia",
+			"currentSpecies"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"blue",
+			"gridAt(x,y)",
+			"blockAt(x,y)",
+			"drawBlock(x,y)",
+			"drawBlock()",
+			"drawBlock",
+			"\\\"",
+			"framecountPattern",
+			"thisweapon",
+			"6",
+			"13",
+			"14",
+			"( ͡° ͜ʖ ͡°)",
+			"character.png",
+			"B",
+			"L",
+			"x*8,y*8",
+			"",
+			"\\'",
+			"/'"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "main.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1678,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								574,
+								574
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 356.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "source/building.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2231,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								352,
+								352
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "source/player.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4827,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1057,
+								1057
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 470.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "source/ai.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1209,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 629.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "source/graphics.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9174,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6171,
+								6171
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3434.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "source/tools.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "source/inventory.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1100,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								178,
+								178
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "source/automation.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2646,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "source/globalvars.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 555,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								84,
+								84
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "source/generation.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14228,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8326,
+								8326
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 5362.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 59.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/projects/leaguebot.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 187.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
