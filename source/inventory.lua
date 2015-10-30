@@ -46,7 +46,9 @@ function itemUpdate(item,dt)
 			end
 		end
 		if dist < 1 then
-			player.inventory[item.kind] = player.inventory[item.kind] + 1
+			if player.inventory[item.kind] then
+				player.inventory[item.kind] = player.inventory[item.kind] + 1
+			end
 			return true
 		end
 	end

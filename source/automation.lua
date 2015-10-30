@@ -13,6 +13,10 @@
 -- 21 - kuro
 -- 22 - tabe
 
+-- 30 - wood
+
+-- 40 - wood bg
+
 
 
 

@@ -380,14 +380,35 @@ function generationInit()
 		if grid[x][y].biome == 6 or grid[x][y].biome == 7 then
 			if grid[x][y].kind == 1 and grid[x][y-1].kind == 0 then
 				if math.random() < 0.1 then
-					grid[x][y].kind = 21
+					grid[x][y].kind = 30
+					grid[x][y-1].kind = 30
+					grid[x][y-2].kind = 30
+					grid[x][y-3].kind = 30
+					grid[x][y-4].kind = 30
+					grid[x][y-5].kind = 30
+					grid[x+1][y-5].kind = 30
+					grid[x+2][y-5].kind = 30
+					grid[x+3][y-5].kind = 30
+					grid[x+4][y-5].kind = 30
+					-- grid[x+5][y-5].kind = 30
+					local grounded = false
+					local currentY = y-5
+					while not grounded do
+						if caveBlockAt(x+5,currentY) then
+							grounded = true
+							break
+						else
+							grid[x+5][currentY].kind = 30
+							currentY = currentY + 1
+						end
+					end
 				end
 			end
 		end
 	end)
 
 
-	print("automation ")
+	print("automation")
 	for i = 0,200 do
 		automationTick()
 	end

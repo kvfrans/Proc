@@ -55,6 +55,9 @@ end
 
 function graphicsInit()
 	spriteCache.dirt = love.graphics.newImage("images/dirt.png")
+	spriteCache.wood = love.graphics.newImage("images/wood.png")
+	spriteCache.woodbg = love.graphics.newImage("images/woodbg.png")
+
 	local maxX = math.ceil(love.graphics.getWidth()  / spriteCache.dirt:getWidth())  + 2
 	local maxY = math.ceil(love.graphics.getHeight() / spriteCache.dirt:getHeight()) + 2
 	local size = maxX * maxY
@@ -122,6 +125,14 @@ function graphicsDrawPOV()
 	        if current.kind == 1 then
 	        	dirtBatch:add(x*scale - camera.x,y*scale - camera.y,0,2,2)
 	        end
+	        if current.kind == 2 then
+	        	love.graphics.setColor(64,140,255,current.waterDensity)
+	        	drawBlock(x,y)
+	        end
+	        if current.kind == 3 then
+	        	love.graphics.setColor(64,140,255,current.waterDensity)
+	        	drawBlock(x,y)
+	        end
 	        if current.kind == 4 then
 	        	love.graphics.setColor(100,100,100)
 	        	drawBlock(x,y)
@@ -132,6 +143,14 @@ function graphicsDrawPOV()
 	        end
 	        if current.kind == 6 then
 	        	love.graphics.setColor(255,255,255)
+	        	drawBlock(x,y)
+	        end
+	        if current.kind == 7 then
+	        	love.graphics.setColor(255,0,0)
+	        	drawBlock(x,y)
+	        end
+	        if current.kind == 10 then
+	        	love.graphics.setColor(200,100,100)
 	        	drawBlock(x,y)
 	        end
 	        if current.kind == 20 then
@@ -146,21 +165,13 @@ function graphicsDrawPOV()
 	        	love.graphics.setColor(20,100,100)
 	        	drawBlock(x,y)
 	        end
-	        if current.kind == 10 then
-	        	love.graphics.setColor(200,100,100)
-	        	drawBlock(x,y)
+	        if current.kind == 30 then
+	        	love.graphics.setColor(current.red,current.green,current.blue)
+	        	drawImage(spriteCache.wood,x,y)
 	        end
-	        if current.kind == 2 then
-	        	love.graphics.setColor(64,140,255,current.waterDensity)
-	        	drawBlock(x,y)
-	        end
-	        if current.kind == 3 then
-	        	love.graphics.setColor(64,140,255,current.waterDensity)
-	        	drawBlock(x,y)
-	        end
-	        if current.kind == 7 then
-	        	love.graphics.setColor(255,0,0)
-	        	drawBlock(x,y)
+	        if current.kind == 40 then
+	        	love.graphics.setColor(current.red,current.green,current.blue)
+	        	drawImage(spriteCache.woodbg,x,y)
 	        end
 		end
 	end
@@ -214,7 +225,8 @@ function graphicsDrawPOV()
 		-- 	break
 		-- end
 		-- if item.kind == 1 then
-			love.graphics.draw(spriteCache.dirt,(item.x)*scale - camera.x,(item.y)*scale - camera.y,0)
+		love.graphics.setColor(255,255,255)
+		love.graphics.draw(spriteCache.dirt,(item.x)*scale - camera.x,(item.y)*scale - camera.y,0)
 		-- end
 
 	end
@@ -251,7 +263,7 @@ function graphicsDrawPOV()
 	love.graphics.draw(spriteCache.dirt,10,132,0,2,2)
 	love.graphics.print("" .. player.inventory[5],34,130)
 
-	graphicsDraw()
+	-- graphicsDraw()
 
 	loveframes.draw()
 
@@ -321,4 +333,8 @@ end
 
 function drawBlock(x,y)
 	love.graphics.rectangle("fill",x*scale - camera.x,y*scale - camera.y,scale,scale)
+end
+
+function drawImage(image,x,y)
+	love.graphics.draw(image,x*scale - camera.x,y*scale - camera.y,0,2,2)
 end
