@@ -4,6 +4,7 @@ collisionGrid = {}
 cronjobs = {}
 npc = {}
 items = {}
+tools = {}
 valuetrain = {
 	mousex = 0,
 	mousey = 0

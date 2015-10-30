@@ -87,106 +87,168 @@ function generationInit()
 
 	print("biome origin")
 	local i = 1
-	while i < 40 do
-		local x = math.floor(math.random()*(gridsize - 2) + 1)
-		local y = math.floor(math.random()*(gridsize - 2 - 100) + 1 + 100)
-		if grid[x][y].kind == 0 then
-			grid[x][y].biome = (i % 5) + 1
-			grid[x][y].r = math.random()*255
-			grid[x][y].g = math.random()*255
-			grid[x][y].b = math.random()*255
-			i = i + 1
+	local x = 100
+	local y = 100
+	for ix=0,5 do
+		for iy=1,5 do
+			i = i+1
+			x = 100*ix
+			y = 100*iy+50
+			if x == 0 then x = 1 end
+			print(x .. " "  .. y)
+			local biomer = math.floor(math.random()*4.99)+1
+			if ix == 4 and iy == 3 then
+				biomer = 6
+			end
+			if ix == 1 and iy == 3 then
+				biomer = 7
+			end
+
+			local notfound = true
+			while notfound do
+				if x > gridsize then
+					notfound = false
+					break
+				elseif grid[x][y].kind == 0 then
+					notfound = false
+					grid[x][y].biome = biomer
+					grid[x][y].red = math.random()*255
+					grid[x][y].green = math.random()*255
+					grid[x][y].blue = math.random()*255
+					-- grid[x][y].red = 255
+				else
+					x = x + 1
+				end
+			end
 		end
 	end
 
 	print("biome loop")
 	-- make biomes
-	for i = 0,200 do
-		for x = 1, gridsize do
-		    for y = 1, gridsize do
-				local b = grid[x][y].biome
-				if not blockAt(x,y) then
-					if b ~= 0 then
-						if helperNeighborsBiome(x,y,0) >= 1 and helperNeighbors(x,y,0) >= 1 then
-							if y < gridsize-1 then
-								if grid[x][y+1].biome == 0 then
-									grid[x][y+1] = copyBlock(x,y+1,grid)
-									grid[x][y+1].biome = b
-									editColor(x,y+1,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
-								end
+	for i = 0,100 do
+		generationAll(function(localgrid,x,y)
+			local b = grid[x][y].biome
+			if not blockAt(x,y) then
+				if b ~= 0 then
+					if helperNeighborsBiome(x,y,0) >= 1 and helperNeighbors(x,y,0) >= 1 then
+						if y < gridsize-1 then
+							if grid[x][y+1].biome == 0 then
+								localgrid[x][y+1] = copyBlock(x,y+1,grid)
+								localgrid[x][y+1].biome = b
+								editColor(localgrid,x,y+1,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
 							end
-							if y > 2 then
-								if grid[x][y-1].biome == 0 then
-									grid[x][y-1] = copyBlock(x,y-1,grid)
-									grid[x][y-1].biome = b
-									editColor(x,y-1,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
-								end
+						end
+						if y > 2 then
+							if grid[x][y-1].biome == 0 then
+								localgrid[x][y-1] = copyBlock(x,y-1,grid)
+								localgrid[x][y-1].biome = b
+								editColor(localgrid,x,y-1,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
 							end
-							if x < gridsize - 1 then
-								if grid[x+1][y].biome == 0 then
-									grid[x+1][y] = copyBlock(x+1,y,grid)
-									grid[x+1][y].biome = b
-									editColor(x+1,y,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
-								end
+						end
+						if x < gridsize - 1 then
+							if grid[x+1][y].biome == 0 then
+								localgrid[x+1][y] = copyBlock(x+1,y,grid)
+								localgrid[x+1][y].biome = b
+								editColor(localgrid,x+1,y,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
 							end
-							if x > 2 then
-								if grid[x-1][y].biome == 0 then
-									grid[x-1][y] = copyBlock(x-1,y,grid)
-									grid[x-1][y].biome = b
-									editColor(x-1,y,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
-								end
+						end
+						if x > 2 then
+							if grid[x-1][y].biome == 0 then
+								localgrid[x-1][y] = copyBlock(x-1,y,grid)
+								localgrid[x-1][y].biome = b
+								editColor(localgrid,x-1,y,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
 							end
 						end
 					end
 				end
 			end
-		end
+		end)
 	end
 
 	print("biome loop walls")
 
-	-- make biomes free
 	for i = 0,100 do
-		for x = 1, gridsize do
-		    for y = 1, gridsize do
-				local b = grid[x][y].biome
-				if true then
-					if b ~= 0 then
-						if helperNeighborsBiome(x,y,0) >= 1 then
-							if y < gridsize-1 then
-								if grid[x][y+1].biome == 0 then
-									grid[x][y+1] = copyBlock(x,y+1,grid)
-									grid[x][y+1].biome = b
-									editColor(x,y+1,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
-								end
+		generationAll(function(localgrid,x,y)
+			local b = grid[x][y].biome
+			if true then
+				if b ~= 0 then
+					if helperNeighborsBiome(x,y,0) >= 1 then
+						if y < gridsize-1 then
+							if grid[x][y+1].biome == 0 then
+								localgrid[x][y+1] = copyBlock(x,y+1,grid)
+								localgrid[x][y+1].biome = b
+								editColor(localgrid,x,y+1,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
 							end
-							if y > 2 then
-								if grid[x][y-1].biome == 0 then
-									grid[x][y-1] = copyBlock(x,y-1,grid)
-									grid[x][y-1].biome = b
-									editColor(x,y-1,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
-								end
+						end
+						if y > 2 then
+							if grid[x][y-1].biome == 0 then
+								localgrid[x][y-1] = copyBlock(x,y-1,grid)
+								localgrid[x][y-1].biome = b
+								editColor(localgrid,x,y-1,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
 							end
-							if x < gridsize - 1 then
-								if grid[x+1][y].biome == 0 then
-									grid[x+1][y] = copyBlock(x+1,y,grid)
-									grid[x+1][y].biome = b
-									editColor(x+1,y,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
-								end
+						end
+						if x < gridsize - 1 then
+							if grid[x+1][y].biome == 0 then
+								localgrid[x+1][y] = copyBlock(x+1,y,grid)
+								localgrid[x+1][y].biome = b
+								editColor(localgrid,x+1,y,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
 							end
-							if x > 2 then
-								if grid[x-1][y].biome == 0 then
-									grid[x-1][y] = copyBlock(x-1,y,grid)
-									grid[x-1][y].biome = b
-									editColor(x-1,y,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
-								end
+						end
+						if x > 2 then
+							if grid[x-1][y].biome == 0 then
+								localgrid[x-1][y] = copyBlock(x-1,y,grid)
+								localgrid[x-1][y].biome = b
+								editColor(localgrid,x-1,y,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
 							end
 						end
 					end
 				end
 			end
-		end
+		end)
 	end
+
+	-- -- make biomes free
+	-- for i = 0,100 do
+	-- 	for x = 1, gridsize do
+	-- 	    for y = 1, gridsize do
+	-- 			local b = grid[x][y].biome
+	-- 			if true then
+	-- 				if b ~= 0 then
+	-- 					if helperNeighborsBiome(x,y,0) >= 1 then
+	-- 						if y < gridsize-1 then
+	-- 							if grid[x][y+1].biome == 0 then
+	-- 								grid[x][y+1] = copyBlock(x,y+1,grid)
+	-- 								grid[x][y+1].biome = b
+	-- 								editColor(x,y+1,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
+	-- 							end
+	-- 						end
+	-- 						if y > 2 then
+	-- 							if grid[x][y-1].biome == 0 then
+	-- 								grid[x][y-1] = copyBlock(x,y-1,grid)
+	-- 								grid[x][y-1].biome = b
+	-- 								editColor(x,y-1,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
+	-- 							end
+	-- 						end
+	-- 						if x < gridsize - 1 then
+	-- 							if grid[x+1][y].biome == 0 then
+	-- 								grid[x+1][y] = copyBlock(x+1,y,grid)
+	-- 								grid[x+1][y].biome = b
+	-- 								editColor(x+1,y,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
+	-- 							end
+	-- 						end
+	-- 						if x > 2 then
+	-- 							if grid[x-1][y].biome == 0 then
+	-- 								grid[x-1][y] = copyBlock(x-1,y,grid)
+	-- 								grid[x-1][y].biome = b
+	-- 								editColor(x-1,y,grid[x][y].red,grid[x][y].blue,grid[x][y].green)
+	-- 							end
+	-- 						end
+	-- 					end
+	-- 				end
+	-- 			end
+	-- 		end
+	-- 	end
+	-- end
 
 	for x = 3, gridsize - 3 do
 	    for y = 3, gridsize - 3 do
@@ -197,7 +259,7 @@ function generationInit()
 	    end
 	end
 
-	-- makes water sources
+	print("water")
 	generationAll(function(localgrid,x,y)
 		if grid[x][y].kind == 1 and y > 100 then
 			local airNeighbors = helperNeighbors(x,y,0)
@@ -218,9 +280,7 @@ function generationInit()
 		end
 	end)
 
-
-
-	-- create tree
+	print("tree")
 	generationAll(function(localgrid,x,y)
 		if grid[x][y].kind == 1 then
 			if y > 6 then
@@ -256,7 +316,7 @@ function generationInit()
 		end
 	end)
 
-	-- create ores
+	print("ore")
 	generationAll(function(localgrid,x,y)
 		if grid[x][y].kind == 1 then
 			-- ore 1
@@ -285,7 +345,7 @@ function generationInit()
 	--     end
 	-- end
 
-		-- create light sources
+	print("create light sources")
 	generationAll(function(localgrid,x,y)
 		if grid[x][y].kind == 0 and y > 100 then
 			local airNeighbors = helperNeighbors(x,y,1)
@@ -301,7 +361,7 @@ function generationInit()
 	end)
 
 
-	-- WE NEED TO BUILD A WALL
+	print("WE NEED TO BUILD A WALL")
     for x = 290, 310 do
 	    for y = 50, 400 do
 	    	if y < 300 then
@@ -314,6 +374,19 @@ function generationInit()
 	    end
 	end
 
+
+	print("civlization")
+	generationAll(function(localgrid,x,y)
+		if grid[x][y].biome == 6 or grid[x][y].biome == 7 then
+			if grid[x][y].kind == 1 and grid[x][y-1].kind == 0 then
+				if math.random() < 0.1 then
+					grid[x][y].kind = 21
+				end
+			end
+		end
+	end)
+
+
 	print("automation ")
 	for i = 0,200 do
 		automationTick()
@@ -323,10 +396,10 @@ function generationInit()
     for i = 2,gridsize do
     	if grid[100][i].kind == 1 and grid[100][i-1].kind == 0 then
     		grid[100][i-1].kind = 7
-    		-- local bot = aiInit()
-    		-- bot.x = 100
-    		-- bot.y = i-1
-    		-- table.insert(npc,bot)
+    		local bot = aiInit()
+    		bot.x = 100
+    		bot.y = i-1
+    		table.insert(npc,bot)
     		playerInit(100,i - 2)
     		break
     	end
@@ -351,13 +424,19 @@ function avgColor(x1,y1,x2,y2)
 	end
 end
 
-function editColor(x,y,red,blue,green)
+function editColor(localgrid,x,y,red,blue,green)
 	local mathr = math.random()
 	local dist = 20
 	local newred = red
 	local newblue = blue
 	local newgreen = green
 	if mathr < 0.3 then
+		-- newred = red
+		-- newblue = blue
+		-- newgreen = green
+		-- newred = 100
+		-- newblue = 200
+		-- newgreen = 300
 		newred = red + math.floor(math.random()*dist - dist/2)
 		newblue = blue + math.floor(math.random()*dist - dist/2)
 		newgreen = green + math.floor(math.random()*dist - dist/2)
@@ -381,9 +460,9 @@ function editColor(x,y,red,blue,green)
 		newgreen = 254
 	end
 	-- print(" " .. red .. " " .. newred .. " " .. blue .. " " .. newblue .. " " .. green .. " " .. newgreen)
-	grid[x][y].red = newred
-	grid[x][y].blue = newblue
-	grid[x][y].green = newgreen
+	localgrid[x][y].red = newred
+	localgrid[x][y].blue = newblue
+	localgrid[x][y].green = newgreen
 end
 
 

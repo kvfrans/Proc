@@ -7,6 +7,7 @@ function playerInit(xa,ya)
 		gravity = 30,
 		yVel = 0,
 		jump = 15,
+		jumpsleft = 1,
 	}
 end
 
@@ -20,9 +21,23 @@ function playerMove(dt)
 		end
 	end
 
+	-- if playerCollidingDown() then
+		player.jumpsleft = 1
+	-- end
+
+	local inwater = false
+	if grid[math.floor(player.x)][math.floor(player.y)].kind == 2 or grid[math.floor(player.x)][math.floor(player.y)].kind == 3 then
+		player.jumpsleft = 1
+		inwater = true
+		player.speed = 4
+	else
+		player.speed = 8
+	end
+
 	if keyPressed("up") then
-		if not playerCollidingUp(true) then
+		if not playerCollidingUp(true) and player.jumpsleft > 0 then
 			player.yVel = player.jump
+			player.jumpsleft = player.jumpsleft - 1
 		end
 	end
 	if keyDown("down") then
@@ -33,6 +48,11 @@ function playerMove(dt)
 	if keyDown("left") then
 		local fallLeft = player.speed*dt
 		local go = false
+		if fallLeft < 0.1 then
+			if not playerCollidingLeft() then
+				go = true
+			end
+		end
 		while fallLeft > 0.1 do
 			if not playerCollidingLeft() then
 				go = true
@@ -50,6 +70,11 @@ function playerMove(dt)
 	if keyDown("right") then
 		local fallLeft = player.speed*dt
 		local go = false
+		if fallLeft < 0.1 then
+			if not playerCollidingRight() then
+				go = true
+			end
+		end
 		while fallLeft > 0.1 do
 			if not playerCollidingRight() then
 				go = true
@@ -79,6 +104,9 @@ function playerMove(dt)
 
 	if player.yVel < 0 then
 		local fallLeft = player.yVel*dt
+		if inwater then
+			fallLeft = fallLeft/2
+		end
 		local go = true
 		while fallLeft < -0.1 do
 			if not playerCollidingDown() then
@@ -99,8 +127,13 @@ function playerMove(dt)
 
 
 
+
+
 	if player.yVel > 0 then
 		local fallLeft = player.yVel*dt
+		if inwater then
+			fallLeft = fallLeft/2
+		end
 		local go = true
 		while fallLeft > 0.1 do
 			if not playerCollidingUp() then

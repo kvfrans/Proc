@@ -13,6 +13,7 @@ keySource = require "source.keymaphandle"
 building = require "source.building"
 loveframes = require "frames"
 inventory = require "source.inventory"
+toolSource = require "source.tools"
 
 
 function love.load()

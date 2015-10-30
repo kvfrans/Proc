@@ -1,9 +1,19 @@
 -- 0 = nothing
 -- 1 = dirt
 
+-- 5 - bio
+
+-- 20 = mono
+-- 21 = kuro
+-- 22 = tabe
+
 function inventoryInit()
 	player.inventory = {}
 	player.inventory[1] = 10
+	player.inventory[5] = 0
+	player.inventory[20] = 0
+	player.inventory[21] = 0
+	player.inventory[22] = 0
 end
 
 function itemInit()
@@ -38,6 +48,12 @@ function itemUpdate(item,dt)
 		if dist < 1 then
 			player.inventory[item.kind] = player.inventory[item.kind] + 1
 			return true
+		end
+	end
+
+	if dist > 4 then
+		if grid[math.floor(item.x)][math.floor(item.y+0.25)].kind == 0 then
+			item.y = item.y + 2*dt
 		end
 	end
 	return false

@@ -6,45 +6,51 @@ function graphicsDraw()
 	-- love.graphics.rectangle("fill",0,0,gridsize*scale,gridsize*scale)
 	framespast = framespast + 1
 
-	love.graphics.draw(canvas)
+	-- love.graphics.draw(canvas)
+	local miniscale = 3
 
-	for y = 1, gridsize do
-	    for x = 1, gridsize do
-	        local current = grid[x][y]
-	        if current.kind == 2 then
-	        	love.graphics.setColor(117,74,25)
-	        	drawBlock(x,y)
-	        	love.graphics.setColor(64,140,255,current.waterDensity)
-	        	drawBlock(x,y)
-	        end
-	        if current.kind == 3 then
-	        	love.graphics.setColor(117,74,25)
-	        	drawBlock(x,y)
-	        	love.graphics.setColor(64,140,255,current.waterDensity)
-	        	drawBlock(x,y)
-	        end
-	        if current.kind == 7 then
-	        	love.graphics.setColor(255,0,0)
-	        	drawBlock(x,y)
-	        end
+	for y = 1, gridsize/3 do
+	    for x = 1, gridsize/3 do
+	        local current = grid[x*3][y*3]
+	        if current.kind == 1 then
+	        	love.graphics.setColor(0,0,0)
+	        	love.graphics.rectangle("fill",x,y,1,1)
+	        else
+	        	if current.biome == 1 then
+	        		love.graphics.setColor(255,0,255)
+		        	love.graphics.rectangle("fill",x,y,1,1)
+		        end
+		        if current.biome == 2 then
+	        		love.graphics.setColor(0,0,255)
+		        	love.graphics.rectangle("fill",x,y,1,1)
+		        end
+		        if current.biome == 3 then
+	        		love.graphics.setColor(0,255,0)
+		        	love.graphics.rectangle("fill",x,y,1,1)
+		        end
+		        if current.biome == 4 then
+	        		love.graphics.setColor(0,255,255)
+		        	love.graphics.rectangle("fill",x,y,1,1)
+		        end
+		        if current.biome == 5 then
+	        		love.graphics.setColor(255,255,0)
+		        	love.graphics.rectangle("fill",x,y,1,1)
+		        end
+		        if current.biome == 6 then
+	        		love.graphics.setColor(255,255,255)
+		        	love.graphics.rectangle("fill",x,y,1,1)
+		        end
+		        if current.biome == 7 then
+	        		love.graphics.setColor(100,100,100)
+		        	love.graphics.rectangle("fill",x,y,1,1)
+		        end
+		    end
 	    end
 	end
 
-	love.graphics.setColor(255,255,255)
-	love.graphics.draw(shadowcanvas)
+	love.graphics.setColor(255,0,0)
+	love.graphics.rectangle("fill",player.x/3,player.y/3,10,10)
 
-	love.graphics.setColor(255,255,255,20)
-	love.graphics.draw(biomecanvas)
-
-
-
-	for i, bot in ipairs(npc) do
-		love.graphics.setColor(255,0,0)
-    	love.graphics.rectangle("fill",bot.x*scale,bot.y*scale,scale,scale)
-	end
-
-	love.graphics.setColor(255,255,255)
-	love.graphics.print("" .. framespast,100,300)
 end
 
 function graphicsInit()
@@ -60,6 +66,8 @@ end
 
 
 function graphicsDrawPOV()
+
+
 
 	scale = 16
 	framespast = framespast + 1
@@ -205,10 +213,15 @@ function graphicsDrawPOV()
 		-- 	table.remove(item,i)
 		-- 	break
 		-- end
-		if item.kind == 1 then
+		-- if item.kind == 1 then
 			love.graphics.draw(spriteCache.dirt,(item.x)*scale - camera.x,(item.y)*scale - camera.y,0)
-		end
+		-- end
 
+	end
+
+	for i, bot in ipairs(npc) do
+		love.graphics.setColor(255,0,0)
+    	love.graphics.rectangle("fill",bot.x*scale - camera.x,bot.y*scale - camera.y,scale,scale)
 	end
 
 	love.graphics.setColor(0,255,255)
@@ -216,12 +229,32 @@ function graphicsDrawPOV()
     love.graphics.setColor(255,0,255)
     love.graphics.rectangle("fill",player.x*scale - camera.x,player.y*scale - camera.y,scale/2,scale/2)
 	love.graphics.setColor(255,255,255)
-	love.graphics.print("" .. #items,100,300)
+	love.graphics.print("" .. framespast,100,300)
 
+	-- dirt
 	love.graphics.draw(spriteCache.dirt,10,12,0,2,2)
 	love.graphics.print("" .. player.inventory[1],34,10)
 
+	-- mono
+	love.graphics.draw(spriteCache.dirt,10,42,0,2,2)
+	love.graphics.print("" .. player.inventory[20],34,40)
+
+	-- kuro
+	love.graphics.draw(spriteCache.dirt,10,72,0,2,2)
+	love.graphics.print("" .. player.inventory[21],34,70)
+
+	-- tabe
+	love.graphics.draw(spriteCache.dirt,10,102,0,2,2)
+	love.graphics.print("" .. player.inventory[22],34,100)
+
+	-- bio
+	love.graphics.draw(spriteCache.dirt,10,132,0,2,2)
+	love.graphics.print("" .. player.inventory[5],34,130)
+
+	graphicsDraw()
+
 	loveframes.draw()
+
 end
 
 function drawLights(baseX,baseY)
@@ -256,7 +289,7 @@ function drawLights(baseX,baseY)
 				if grid[math.floor(currentX)][math.floor(currentY)+1].playerlight == 0 then
 					grid[math.floor(currentX)][math.floor(currentY)+1].playerlight = light/2
 				end
-				if pointCollide(px,py,currentX,currentY,0.5,0.5) then
+				if pointCollide(px,py,currentX,currentY,0,0) then
 					break
 				end
 			else
