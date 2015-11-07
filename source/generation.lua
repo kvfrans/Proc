@@ -125,7 +125,7 @@ function generationInit()
 
 	print("biome loop")
 	-- make biomes
-	for i = 0,100 do
+	for i = 0,50 do
 		generationAll(function(localgrid,x,y)
 			local b = grid[x][y].biome
 			if not blockAt(x,y) then
@@ -167,7 +167,7 @@ function generationInit()
 
 	print("biome loop walls")
 
-	for i = 0,100 do
+	for i = 0,10 do
 		generationAll(function(localgrid,x,y)
 			local b = grid[x][y].biome
 			if true then
@@ -379,27 +379,133 @@ function generationInit()
 	generationAll(function(localgrid,x,y)
 		if grid[x][y].biome == 6 or grid[x][y].biome == 7 then
 			if grid[x][y].kind == 1 and grid[x][y-1].kind == 0 then
-				if math.random() < 0.1 then
-					grid[x][y].kind = 30
-					grid[x][y-1].kind = 30
-					grid[x][y-2].kind = 30
-					grid[x][y-3].kind = 30
-					grid[x][y-4].kind = 30
-					grid[x][y-5].kind = 30
-					grid[x+1][y-5].kind = 30
-					grid[x+2][y-5].kind = 30
-					grid[x+3][y-5].kind = 30
-					grid[x+4][y-5].kind = 30
-					-- grid[x+5][y-5].kind = 30
+				if math.random() < 1 then
 					local grounded = false
 					local currentY = y-5
+					local countdown = 0
 					while not grounded do
-						if caveBlockAt(x+5,currentY) then
+						if caveBlockAt(x+6,currentY) then
 							grounded = true
 							break
 						else
-							grid[x+5][currentY].kind = 30
 							currentY = currentY + 1
+							countdown = countdown + 1
+						end
+					end
+					if countdown > 2 and countdown < 12 then
+						grid[x][y].kind = 30
+						grid[x][y-1].kind = 30
+						grid[x][y-2].kind = 30
+						grid[x][y-3].kind = 30
+						grid[x][y-4].kind = 30
+						grid[x][y-5].kind = 30
+						grid[x+1][y-5].kind = 30
+						grid[x+2][y-5].kind = 30
+						grid[x+3][y-5].kind = 30
+						grid[x+4][y-5].kind = 30
+						grid[x+5][y-5].kind = 30
+						for ix = 1,5 do
+							if grid[x+ix][y].kind == 0 then
+								grid[x+ix][y].kind = 40
+							end
+							if grid[x+ix][y-1].kind == 0 then
+								grid[x+ix][y].kind = 40
+							end
+							if grid[x+ix][y-2].kind == 0 then
+								grid[x+ix][y].kind = 40
+							end
+							if grid[x+ix][y-3].kind == 0 then
+								grid[x+ix][y].kind = 40
+							end
+							if grid[x+ix][y-4].kind == 0 then
+								grid[x+ix][y].kind = 40
+							end
+						end
+
+						grid[x+3][y-4].kind = 4
+						helperLights(grid,x+3,y-4)
+						-- grid[x+5][y-5].kind = 30
+						grounded = false
+						currentY = y-5
+						while not grounded do
+							if caveBlockAt(x+6,currentY) then
+								grounded = true
+								break
+							else
+								grid[x+5][currentY].kind = 30
+								for ix = 1,5 do
+									if grid[x+ix][currentY].kind == 0 then
+										grid[x+ix][currentY].kind = 40
+									end
+								end
+								currentY = currentY + 1
+							end
+						end
+					end
+				end
+			end
+
+			if grid[x][y].kind == 1 and grid[x-1][y].kind == 0 then
+				if math.random() < 1 then
+					local grounded = false
+					local currentX = x-5
+					local countdown = 0
+					while not grounded do
+						if caveBlockAt(currentX,y-6) then
+							grounded = true
+							break
+						else
+							currentX = currentX + 1
+							countdown = countdown + 1
+						end
+					end
+					if countdown > 2 and countdown < 12 then
+						grid[x][y].kind = 30
+						grid[x-1][y].kind = 30
+						grid[x-2][y].kind = 30
+						grid[x-3][y].kind = 30
+						grid[x-4][y].kind = 30
+						grid[x-5][y].kind = 30
+						grid[x-5][y-1].kind = 30
+						grid[x-5][y-2].kind = 30
+						grid[x-5][y-3].kind = 30
+						grid[x-5][y-4].kind = 30
+						grid[x-5][y-5].kind = 30
+						for iy = 1,5 do
+							if grid[x][y-iy].kind == 0 then
+								grid[x][y-iy].kind = 40
+							end
+							if grid[x-1][y-iy].kind == 0 then
+								grid[x-1][y-iy].kind = 40
+							end
+							if grid[x-2][y-iy].kind == 0 then
+								grid[x-2][y-iy].kind = 40
+							end
+							if grid[x-3][y-iy].kind == 0 then
+								grid[x-3][y-iy].kind = 40
+							end
+							if grid[x-4][y-iy].kind == 0 then
+								grid[x-4][y-iy].kind = 40
+							end
+						end
+
+						grid[x-3][y-4].kind = 4
+
+						currentX = x-5
+						grounded = false
+						while not grounded do
+							if caveBlockAt(currentX,y-6) then
+								grounded = true
+								break
+							else
+								grid[currentX][y-5].kind = 30
+								for iy = 1,5 do
+									if grid[currentX][y-iy].kind == 0 then
+										grid[currentX][y-iy].kind = 40
+									end
+								end
+								currentX = currentX + 1
+							end
 						end
 					end
 				end
@@ -407,20 +513,55 @@ function generationInit()
 		end
 	end)
 
+	local basex = 0
+	local basey = 0
+
+	print("civlization capitals")
+	local finished = false
+	while not finished do
+		local tryx = math.floor(math.random()*(gridsize-3)) + 1
+		local tryy = math.floor(math.random()*(gridsize-3)) + 1
+		if grid[tryx][tryy].biome == 7 then
+			for ix = tryx-6,tryx+6 do
+				for iy = tryy-6,tryy+6 do
+					if ix == tryx - 6 or ix == tryx + 6 or iy == tryy-6 or iy == tryy+6 then
+						grid[ix][iy].kind = 30
+					else
+						grid[ix][iy].kind = 40
+					end
+				end
+			end
+			basex = tryx
+			basey = tryy
+			grid[tryx][tryy].kind = 4
+			finished = true
+		end
+	end
+
 
 	print("automation")
 	for i = 0,200 do
 		automationTick()
 	end
 
+	print("bot")
+
     -- make bot
-    for i = 2,gridsize do
+    for i = gridsize-30,2 do
     	if grid[100][i].kind == 1 and grid[100][i-1].kind == 0 then
     		grid[100][i-1].kind = 7
     		local bot = aiInit()
     		bot.x = 100
-    		bot.y = i-1
+    		bot.y = i-3
+    		local indexvar = xyToIndex(bot.x,bot.y-1)
+    		printGUI(indexvar)
+    		bot.target.x = basex
+    		bot.target.y = basey
+    		table.insert(bot.path,indexvar)
     		table.insert(npc,bot)
+
+    		breadthFirst(bot)
+
     		playerInit(100,i - 2)
     		break
     	end

@@ -14,6 +14,7 @@ building = require "source.building"
 loveframes = require "frames"
 inventory = require "source.inventory"
 toolSource = require "source.tools"
+Heap = require "source.heap"
 
 
 function love.load()
@@ -26,6 +27,10 @@ function love.load()
 	loveframes.update(dt)
 	love.keyboard.setKeyRepeat(true)
 	inventoryInit()
+
+	local croner = cron.every(5, buildUpdate)
+	table.insert(cronjobs,croner)
+	buildUpdate()
 end
 
 function love.update(dt)
@@ -37,6 +42,9 @@ function love.update(dt)
 	playerMove(dt)
 	buildingUpdate(false)
 	loveframes.update(dt)
+	for i = 1, #npc do
+		-- aiTick(npc[i],dt)
+	end
 	for i = 1, #items do
 		if itemUpdate(items[i],dt) then
 			table.remove(items,i)

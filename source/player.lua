@@ -25,14 +25,14 @@ function playerMove(dt)
 		player.jumpsleft = 1
 	-- end
 
-	local inwater = false
-	if grid[math.floor(player.x)][math.floor(player.y)].kind == 2 or grid[math.floor(player.x)][math.floor(player.y)].kind == 3 then
-		player.jumpsleft = 1
-		inwater = true
-		player.speed = 4
-	else
-		player.speed = 8
-	end
+	-- local inwater = false
+	-- if grid[math.floor(player.x)][math.floor(player.y)].kind == 2 or grid[math.floor(player.x)][math.floor(player.y)].kind == 3 then
+	-- 	player.jumpsleft = 1
+	-- 	inwater = true
+	-- 	player.speed = 4
+	-- else
+	-- 	player.speed = 8
+	-- end
 
 	if keyPressed("up") then
 		if not playerCollidingUp(true) and player.jumpsleft > 0 then

@@ -234,6 +234,10 @@ function graphicsDrawPOV()
 	for i, bot in ipairs(npc) do
 		love.graphics.setColor(255,0,0)
     	love.graphics.rectangle("fill",bot.x*scale - camera.x,bot.y*scale - camera.y,scale,scale)
+    	for i, indexvar in ipairs(bot.path) do
+    		love.graphics.setColor(0,255,0)
+	    	love.graphics.rectangle("fill",indexToX(indexvar)*scale - camera.x,indexToY(indexvar)*scale - camera.y,scale,scale)
+    	end
 	end
 
 	love.graphics.setColor(0,255,255)

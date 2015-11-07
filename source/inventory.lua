@@ -26,7 +26,7 @@ function itemInit()
 end
 
 function itemUpdate(item,dt)
-	local speed = 2
+	local speed = 12
 	local dist = math.sqrt(math.pow(item.x - player.x,2) + math.pow(item.y - player.y,2))
 	for i=1,3 do
 		if dist < 4 then
@@ -55,7 +55,7 @@ function itemUpdate(item,dt)
 
 	if dist > 4 then
 		if grid[math.floor(item.x)][math.floor(item.y+0.25)].kind == 0 then
-			item.y = item.y + 2*dt
+			item.y = item.y + 6*dt
 		end
 	end
 	return false
