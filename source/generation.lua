@@ -125,7 +125,7 @@ function generationInit()
 
 	print("biome loop")
 	-- make biomes
-	for i = 0,50 do
+	for i = 0,200 do
 		generationAll(function(localgrid,x,y)
 			local b = grid[x][y].biome
 			if not blockAt(x,y) then
@@ -167,7 +167,7 @@ function generationInit()
 
 	print("biome loop walls")
 
-	for i = 0,10 do
+	for i = 0,50 do
 		generationAll(function(localgrid,x,y)
 			local b = grid[x][y].biome
 			if true then
@@ -547,7 +547,7 @@ function generationInit()
 	print("bot")
 
     -- make bot
-    for i = gridsize-30,2 do
+    for i = 2,gridsize do
     	if grid[100][i].kind == 1 and grid[100][i-1].kind == 0 then
     		grid[100][i-1].kind = 7
     		local bot = aiInit()
@@ -560,9 +560,11 @@ function generationInit()
     		table.insert(bot.path,indexvar)
     		table.insert(npc,bot)
 
+    		playerInit(100,i - 2)
+
     		breadthFirst(bot)
 
-    		playerInit(100,i - 2)
+
     		break
     	end
     end

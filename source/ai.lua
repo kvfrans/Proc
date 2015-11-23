@@ -73,12 +73,19 @@ function caveBlockAt(x,y)
 	end
 end
 
+function heuristic(x1,y1,x2,y2)
+	return math.abs(x1 - x2) + math.abs(y1 - y2)
+end
+
 
 function breadthFirst(bot)
+	bot.x = math.floor(player.x)
+	bot.y = math.floor(player.y)
 	local frontier = Heap.new()
 	local startindex = xyToIndex(bot.x,bot.y)
 	local target = xyToIndex(bot.target.x,bot.target.y)
-	-- print("target is " .. indexToX(target) .. " " .. indexToY(target))
+	bot.path = {}
+	print("bot is " .. bot.x .. " " .. bot.y)
 
 	local camefrom = {}
 	camefrom[startindex] = -1
@@ -90,7 +97,7 @@ function breadthFirst(bot)
 	while not frontier:isempty() do
 		local current = frontier:pop()
 
-		print(indexToX(current) .. " " .. indexToY(current))
+		-- print(indexToX(current) .. " " .. indexToY(current))
 
 		if current == target then
 			local loopback = current
@@ -104,27 +111,19 @@ function breadthFirst(bot)
 
 		local neighbors = {}
 		if indexToX(current) - 1 > 1 then
-			-- if grid[indexToX(current - 1)][indexToY(current - 1)].kind == 0 then
-				table.insert(neighbors,current - 1)
-			-- end
+			table.insert(neighbors,current - 1)
 		end
-		if indexToY(current) - 600 >= 1 then
-			-- if grid[indexToX(current - 600)][indexToY(current - 600)].kind == 0 then
-				table.insert(neighbors,current - 600)
-			-- end
+		if indexToY(current) - 1 > 1 then
+			table.insert(neighbors,current - 600)
 		end
-		if indexToX(current) + 1 < 360000 then
-			-- if grid[indexToX(current + 1)][indexToY(current + 1)].kind == 0 then
-				table.insert(neighbors,current + 1)
-			-- end
+		if indexToX(current) + 1 < 600 then
+			table.insert(neighbors,current + 1)
 		end
-		if indexToY(current) + 600 < 360000 then
-			-- if grid[indexToX(current + 600)][indexToY(current + 600)].kind == 0 then
-				table.insert(neighbors,current + 600)
-			-- end
+		if indexToY(current) + 1 < 600 then
+			table.insert(neighbors,current + 600)
 		end
 		for i, neighbor in ipairs(neighbors) do
-			-- print("trying to index " .. indexToX(neighbor) .. " " .. indexToY(neighbor))
+
 			local newcost = costsofar[current] + 1
 			if grid[indexToX(neighbor)][indexToY(neighbor)].kind == 1 then
 				newcost = newcost + 10
@@ -139,7 +138,12 @@ function breadthFirst(bot)
 			end
 			if valid then
 				costsofar[neighbor] = newcost
-				frontier:push(neighbor,99999999999 - newcost)
+				local priority = -1 * heuristic(indexToX(neighbor),indexToY(neighbor),bot.target.x,bot.target.y)
+				-- print("" .. newcost)
+				priority =  - newcost
+				if priority ~= nil then
+					frontier:push(neighbor,priority)
+				end
 				camefrom[neighbor] = current
 			end
 		end

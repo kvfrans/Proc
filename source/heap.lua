@@ -1,4 +1,5 @@
 local assert, setmetatable = assert, setmetatable
+local print = print
 
 module(...)
 
@@ -31,6 +32,11 @@ local function pop (h)
   s = s - 1
   local n = 1 -- node position in heap array
   local p = 2 * n -- left sibling position
+  -- print("sssssssss")
+  -- print(s)
+  -- print(p)
+  -- print(t[h[p]])
+  -- print(t[h[p+1]])
   if s > p and t[h[p]] < t[h[p + 1]] then
     p = 2 * n + 1 -- right sibling position
   end
@@ -38,6 +44,11 @@ local function pop (h)
     h[p], h[n] = h[n], h[p]
     n = p
     p = 2 * n
+    -- print("dddd")
+    -- print(s)
+    -- print(p)
+    -- print(t[h[p]])
+    -- print(t[h[p+1]])
     if s > p and t[h[p]] < t[h[p + 1]] then
       p = 2 * n + 1
     end

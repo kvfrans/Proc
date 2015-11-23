@@ -28,7 +28,13 @@ function love.load()
 	love.keyboard.setKeyRepeat(true)
 	inventoryInit()
 
-	local croner = cron.every(5, buildUpdate)
+	local croner = cron.every(5, function()
+			buildUpdate()
+			for i = 1, #npc do
+				breadthFirst(npc[i])
+				-- aiTick(npc[i],dt)
+			end
+		end)
 	table.insert(cronjobs,croner)
 	buildUpdate()
 end
@@ -43,6 +49,7 @@ function love.update(dt)
 	buildingUpdate(false)
 	loveframes.update(dt)
 	for i = 1, #npc do
+		-- breadthFirst(npc[i])
 		-- aiTick(npc[i],dt)
 	end
 	for i = 1, #items do
@@ -59,10 +66,10 @@ function love.draw()
 end
 
 function love.mousepressed(x, y, button)
-    loveframes.mousepressed(x, y, button)
+		loveframes.mousepressed(x, y, button)
     buildingUpdate(true)
 
-    -- if button == "l" then
+		-- if button == "l" then
     -- 	buildRemove(x,y)
     -- end
     -- print("asd")
