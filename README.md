@@ -1,8 +1,8 @@
 # Proc
 
 ##Structure
-grid is a 2d array of blocks
-blocks have
+grid is a 2d array of blocks..
+blocks have..
     - kind: what type of block
         - 0 - air
         - 1 - block
